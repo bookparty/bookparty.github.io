@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,16 +14,17 @@
 
   <!-- OPEN GRAPH -->
   <meta property="og:title" content="Giunti in Oriente - Book Party a Ischia" />
+
   <meta
     property="og:description"
     content="Porta un libro e partecipa al Book Party il 14 maggio alle ore 19:00 all'Oriente Hotel Terme di Ischia."
   />
 
-  <!-- CAMBIA QUESTO CON IL TUO DOMINIO -->
-  <meta property="og:image" content="https://TUODOMINIO.it/manifesto.JPG" />
+  <!-- CAMBIA CON IL TUO DOMINIO -->
+  <meta property="og:image" content="https://bookparty.github.io/manifesto.JPG" />
 
-  <!-- CAMBIA QUESTO CON IL TUO DOMINIO -->
-  <meta property="og:url" content="https://TUODOMINIO.it" />
+  <!-- CAMBIA CON IL TUO DOMINIO -->
+  <meta property="og:url" content="https://bookparty.github.io" />
 
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="it_IT" />
@@ -36,7 +38,7 @@
       margin: 0;
       font-family: Georgia, "Times New Roman", serif;
       background:
-        radial-gradient(circle at top, rgba(239,107,46,0.22), transparent 30%),
+        radial-gradient(circle at top, rgba(239, 107, 46, 0.22), transparent 30%),
         linear-gradient(180deg, #fff1e6 0%, #f7d4c1 100%);
       color: #0d2c54;
       min-height: 100vh;
@@ -63,22 +65,22 @@
       width: 100%;
       display: block;
       border-radius: 28px;
-      box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
     }
 
     .content {
-      background: rgba(255,255,255,0.82);
+      background: rgba(255, 255, 255, 0.82);
       backdrop-filter: blur(10px);
       padding: 34px 28px;
       border-radius: 30px;
-      box-shadow: 0 14px 35px rgba(0,0,0,0.12);
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.12);
       text-align: center;
     }
 
     .eyebrow {
       display: inline-block;
       padding: 8px 16px;
-      background: rgba(239,107,46,0.12);
+      background: rgba(239, 107, 46, 0.12);
       color: #ef6b2e;
       border-radius: 999px;
       font-size: 14px;
@@ -143,12 +145,12 @@
 
     .feature {
       background: #fff7f0;
-      border: 1px solid rgba(239,107,46,0.22);
+      border: 1px solid rgba(239, 107, 46, 0.22);
       padding: 18px;
       border-radius: 18px;
       font-size: 18px;
       font-weight: bold;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
     }
 
     .box {
@@ -227,6 +229,7 @@
 <body>
 
   <main class="hero">
+
     <div class="container">
 
       <div class="poster">
@@ -286,7 +289,7 @@
             Apri la mappa
           </a>
 
-          <!-- CAMBIA IL LINK CON IL TUO DOMINIO -->
+          <!-- CAMBIA CON IL TUO DOMINIO -->
           <a
             class="button secondary"
             href="https://wa.me/?text=Partecipa%20al%20Book%20Party%20Giunti%20in%20Oriente%20a%20Ischia!%20📚%0Ahttps://bookparty.github.io"
@@ -301,11 +304,110 @@
       </div>
 
     </div>
+
   </main>
 
   <footer>
     In collaborazione con Giunti al Punto · Ischia
   </footer>
 
+  <!-- MUSICA INVISIBILE -->
+
+  <audio id="bgMusic"></audio>
+
+  <script>
+    const tracks = [
+      "musica1.mp3",
+      "musica2.mp3",
+      "musica3.mp3"
+    ];
+
+    const music = document.getElementById("bgMusic");
+
+    // volume elegante
+    music.volume = 0.15;
+
+    // shuffle playlist
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    shuffle(tracks);
+
+    let currentTrack = 0;
+
+    // fade in
+    function fadeIn(audio) {
+      audio.volume = 0;
+
+      let vol = 0;
+
+      const interval = setInterval(() => {
+
+        if (vol < 0.15) {
+          vol += 0.01;
+          audio.volume = vol;
+        } else {
+          clearInterval(interval);
+        }
+
+      }, 200);
+    }
+
+    // fade out
+    function fadeOut(audio, callback) {
+
+      let vol = audio.volume;
+
+      const interval = setInterval(() => {
+
+        if (vol > 0.02) {
+          vol -= 0.02;
+          audio.volume = vol;
+        } else {
+          clearInterval(interval);
+          callback();
+        }
+
+      }, 180);
+
+    }
+
+    function playTrack(index) {
+      music.src = tracks[index];
+
+      music.play().catch(() => {});
+
+      fadeIn(music);
+    }
+
+    // cambio automatico traccia
+    music.addEventListener("ended", () => {
+
+      fadeOut(music, () => {
+
+        currentTrack++;
+
+        if (currentTrack >= tracks.length) {
+          currentTrack = 0;
+          shuffle(tracks);
+        }
+
+        playTrack(currentTrack);
+
+      });
+
+    });
+
+    // start mobile-safe
+    document.addEventListener("click", () => {
+      playTrack(currentTrack);
+    }, { once: true });
+  </script>
+
 </body>
+
 </html>
