@@ -1,44 +1,31 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Giunti in Oriente - Book Party a Ischia | 14 Maggio</title>
 
-  <meta
-    name="description"
-    content="Giunti in Oriente - Book Party a Ischia. Evento con libri, aperitivo, musica e beneficenza il 14 maggio alle ore 19:00 presso Oriente Hotel Terme."
-  />
+  <meta name="description" content="Giunti in Oriente - Book Party a Ischia. Evento con libri, aperitivo, musica e beneficenza il 14 maggio alle ore 19:00 presso Oriente Hotel Terme." />
 
-  <!-- OPEN GRAPH -->
   <meta property="og:title" content="Giunti in Oriente - Book Party a Ischia" />
-
-  <meta
-    property="og:description"
-    content="Porta un libro e partecipa al Book Party il 14 maggio alle ore 19:00 all'Oriente Hotel Terme di Ischia."
-  />
+  <meta property="og:description" content="Porta un libro e partecipa al Book Party il 14 maggio alle ore 19:00 all'Oriente Hotel Terme di Ischia." />
 
   <!-- CAMBIA CON IL TUO DOMINIO -->
   <meta property="og:image" content="https://bookparty.github.io/manifesto.JPG" />
-
-  <!-- CAMBIA CON IL TUO DOMINIO -->
   <meta property="og:url" content="https://bookparty.github.io" />
 
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="it_IT" />
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
       font-family: Georgia, "Times New Roman", serif;
       background:
-        radial-gradient(circle at top, rgba(239, 107, 46, 0.22), transparent 30%),
+        radial-gradient(circle at top, rgba(239,107,46,0.22), transparent 30%),
         linear-gradient(180deg, #fff1e6 0%, #f7d4c1 100%);
       color: #0d2c54;
       min-height: 100vh;
@@ -65,22 +52,22 @@
       width: 100%;
       display: block;
       border-radius: 28px;
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
+      box-shadow: 0 20px 45px rgba(0,0,0,0.18);
     }
 
     .content {
-      background: rgba(255, 255, 255, 0.82);
+      background: rgba(255,255,255,0.82);
       backdrop-filter: blur(10px);
       padding: 34px 28px;
       border-radius: 30px;
-      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 14px 35px rgba(0,0,0,0.12);
       text-align: center;
     }
 
     .eyebrow {
       display: inline-block;
       padding: 8px 16px;
-      background: rgba(239, 107, 46, 0.12);
+      background: rgba(239,107,46,0.12);
       color: #ef6b2e;
       border-radius: 999px;
       font-size: 14px;
@@ -97,9 +84,7 @@
       color: #0d2c54;
     }
 
-    .orange {
-      color: #ef6b2e;
-    }
+    .orange { color: #ef6b2e; }
 
     .subtitle {
       font-size: clamp(24px, 4vw, 34px);
@@ -145,12 +130,12 @@
 
     .feature {
       background: #fff7f0;
-      border: 1px solid rgba(239, 107, 46, 0.22);
+      border: 1px solid rgba(239,107,46,0.22);
       padding: 18px;
       border-radius: 18px;
       font-size: 18px;
       font-weight: bold;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.05);
     }
 
     .box {
@@ -186,41 +171,55 @@
       color: white;
     }
 
-    .button.primary:hover {
-      background: #d9551d;
-    }
+    .button.primary:hover { background: #d9551d; }
 
     .button.secondary {
       background: #0d2c54;
       color: white;
     }
 
-    .button.secondary:hover {
-      background: #123b70;
-    }
+    .button.secondary:hover { background: #123b70; }
 
     footer {
       text-align: center;
-      padding: 28px 20px;
+      padding: 28px 20px 90px;
       color: #0d2c54;
       font-size: 15px;
     }
 
+    .volume-control {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(13,44,84,0.92);
+      padding: 12px 16px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 999;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+    }
+
+    .volume-control span {
+      color: white;
+      font-size: 16px;
+    }
+
+    #volumeSlider {
+      width: 110px;
+      cursor: pointer;
+    }
+
     @media (max-width: 600px) {
-      .content {
-        padding: 28px 22px;
-      }
+      .content { padding: 28px 22px; }
+      .date-badge span { font-size: 52px; }
+      .date-badge div { font-size: 20px; }
+      .info { font-size: 19px; }
 
-      .date-badge span {
-        font-size: 52px;
-      }
-
-      .date-badge div {
-        font-size: 20px;
-      }
-
-      .info {
-        font-size: 19px;
+      .volume-control {
+        right: 50%;
+        transform: translateX(50%);
       }
     }
   </style>
@@ -229,33 +228,21 @@
 <body>
 
   <main class="hero">
-
     <div class="container">
 
       <div class="poster">
-        <img
-          src="manifesto.JPG"
-          alt="Manifesto evento Giunti in Oriente Book Party a Ischia"
-        />
+        <img src="manifesto.JPG" alt="Manifesto evento Giunti in Oriente Book Party a Ischia" />
       </div>
 
       <div class="content">
+        <div class="eyebrow">Evento speciale a Ischia</div>
 
-        <div class="eyebrow">
-          Evento speciale a Ischia
-        </div>
+        <h1>Giunti in <span class="orange">Oriente</span></h1>
 
-        <h1>
-          Giunti in <span class="orange">Oriente</span>
-        </h1>
-
-        <div class="subtitle">
-          Una serata tra libri, musica e incontri
-        </div>
+        <div class="subtitle">Una serata tra libri, musica e incontri</div>
 
         <div class="date-badge">
           <span>14</span>
-
           <div>
             <strong>Maggio 2026</strong><br />
             dalle ore 19:00
@@ -274,12 +261,10 @@
         </div>
 
         <div class="box">
-          Una serata speciale dedicata ai libri,
-          alla condivisione, alla musica e alla beneficenza.
+          Una serata speciale dedicata ai libri, alla condivisione, alla musica e alla beneficenza.
         </div>
 
         <div class="actions">
-
           <a
             class="button primary"
             href="https://www.google.com/maps/search/?api=1&query=Oriente+Hotel+Terme+Via+delle+Terme+5+Ischia"
@@ -298,13 +283,10 @@
           >
             Condividi su WhatsApp
           </a>
-
         </div>
-
       </div>
 
     </div>
-
   </main>
 
   <footer>
@@ -312,8 +294,12 @@
   </footer>
 
   <!-- MUSICA INVISIBILE -->
-
   <audio id="bgMusic"></audio>
+
+  <div class="volume-control">
+    <span>🔉</span>
+    <input type="range" id="volumeSlider" min="0" max="100" value="15" />
+  </div>
 
   <script>
     const tracks = [
@@ -323,11 +309,13 @@
     ];
 
     const music = document.getElementById("bgMusic");
+    const volumeSlider = document.getElementById("volumeSlider");
 
-    // volume elegante
-    music.volume = 0.15;
+    let currentTrack = 0;
+    let hasStarted = false;
 
-    // shuffle playlist
+    music.volume = volumeSlider.value / 100;
+
     function shuffle(array) {
       for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -337,58 +325,43 @@
 
     shuffle(tracks);
 
-    let currentTrack = 0;
-
-    // fade in
     function fadeIn(audio) {
       audio.volume = 0;
-
+      let targetVolume = volumeSlider.value / 100;
       let vol = 0;
 
       const interval = setInterval(() => {
-
-        if (vol < 0.15) {
+        if (vol < targetVolume) {
           vol += 0.01;
-          audio.volume = vol;
+          audio.volume = Math.min(vol, targetVolume);
         } else {
           clearInterval(interval);
         }
-
       }, 200);
     }
 
-    // fade out
     function fadeOut(audio, callback) {
-
       let vol = audio.volume;
 
       const interval = setInterval(() => {
-
         if (vol > 0.02) {
           vol -= 0.02;
-          audio.volume = vol;
+          audio.volume = Math.max(vol, 0);
         } else {
           clearInterval(interval);
           callback();
         }
-
       }, 180);
-
     }
 
     function playTrack(index) {
       music.src = tracks[index];
-
       music.play().catch(() => {});
-
       fadeIn(music);
     }
 
-    // cambio automatico traccia
     music.addEventListener("ended", () => {
-
       fadeOut(music, () => {
-
         currentTrack++;
 
         if (currentTrack >= tracks.length) {
@@ -397,17 +370,20 @@
         }
 
         playTrack(currentTrack);
-
       });
-
     });
 
-    // start mobile-safe
+    volumeSlider.addEventListener("input", () => {
+      music.volume = volumeSlider.value / 100;
+    });
+
     document.addEventListener("click", () => {
-      playTrack(currentTrack);
+      if (!hasStarted) {
+        hasStarted = true;
+        playTrack(currentTrack);
+      }
     }, { once: true });
   </script>
 
 </body>
-
 </html>
