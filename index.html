@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Giunti in Oriente - Book Party a Ischia | 14 Maggio</title>
 
-  <meta name="description" content="Giunti in Oriente - Book Party a Ischia. Evento con libri, aperitivo, musica e beneficenza il 14 maggio alle ore 19:00 presso Oriente Hotel Terme." />
+  <meta
+    name="description"
+    content="Giunti in Oriente - Book Party a Ischia. Evento con libri, aperitivo, musica e beneficenza il 14 maggio alle ore 19:00 presso Oriente Hotel Terme."
+  />
 
+  <!-- OPEN GRAPH -->
   <meta property="og:title" content="Giunti in Oriente - Book Party a Ischia" />
-  <meta property="og:description" content="Porta un libro e partecipa al Book Party il 14 maggio alle ore 19:00 all'Oriente Hotel Terme di Ischia." />
+
+  <meta
+    property="og:description"
+    content="Porta un libro e partecipa al Book Party il 14 maggio alle ore 19:00 all'Oriente Hotel Terme di Ischia."
+  />
 
   <!-- CAMBIA CON IL TUO DOMINIO -->
   <meta property="og:image" content="https://bookparty.github.io/manifesto.JPG" />
@@ -19,7 +28,9 @@
   <meta property="og:locale" content="it_IT" />
 
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -84,7 +95,9 @@
       color: #0d2c54;
     }
 
-    .orange { color: #ef6b2e; }
+    .orange {
+      color: #ef6b2e;
+    }
 
     .subtitle {
       font-size: clamp(24px, 4vw, 34px);
@@ -171,55 +184,85 @@
       color: white;
     }
 
-    .button.primary:hover { background: #d9551d; }
+    .button.primary:hover {
+      background: #d9551d;
+    }
 
     .button.secondary {
       background: #0d2c54;
       color: white;
     }
 
-    .button.secondary:hover { background: #123b70; }
+    .button.secondary:hover {
+      background: #123b70;
+    }
 
     footer {
       text-align: center;
-      padding: 28px 20px 90px;
+      padding: 28px 20px;
       color: #0d2c54;
       font-size: 15px;
     }
 
-    .volume-control {
+    /* SIDEBAR VOLUME */
+
+    .volume-sidebar {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      top: 50%;
+      right: 18px;
+      transform: translateY(-50%);
+      width: 58px;
+      height: 210px;
       background: rgba(13,44,84,0.92);
-      padding: 12px 16px;
       border-radius: 999px;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 10px;
+      justify-content: center;
+      gap: 18px;
       z-index: 999;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+      backdrop-filter: blur(10px);
     }
 
-    .volume-control span {
+    .volume-sidebar span {
       color: white;
-      font-size: 16px;
+      font-size: 18px;
     }
 
     #volumeSlider {
-      width: 110px;
+      -webkit-appearance: slider-vertical;
+      width: 8px;
+      height: 120px;
       cursor: pointer;
     }
 
-    @media (max-width: 600px) {
-      .content { padding: 28px 22px; }
-      .date-badge span { font-size: 52px; }
-      .date-badge div { font-size: 20px; }
-      .info { font-size: 19px; }
+    @media (max-width: 768px) {
 
-      .volume-control {
-        right: 50%;
-        transform: translateX(50%);
+      .volume-sidebar {
+        right: 10px;
+        width: 50px;
+        height: 180px;
+      }
+
+      #volumeSlider {
+        height: 100px;
+      }
+
+      .content {
+        padding: 28px 22px;
+      }
+
+      .date-badge span {
+        font-size: 52px;
+      }
+
+      .date-badge div {
+        font-size: 20px;
+      }
+
+      .info {
+        font-size: 19px;
       }
     }
   </style>
@@ -228,21 +271,33 @@
 <body>
 
   <main class="hero">
+
     <div class="container">
 
       <div class="poster">
-        <img src="manifesto.JPG" alt="Manifesto evento Giunti in Oriente Book Party a Ischia" />
+        <img
+          src="manifesto.JPG"
+          alt="Manifesto evento Giunti in Oriente Book Party a Ischia"
+        />
       </div>
 
       <div class="content">
-        <div class="eyebrow">Evento speciale a Ischia</div>
 
-        <h1>Giunti in <span class="orange">Oriente</span></h1>
+        <div class="eyebrow">
+          Evento speciale a Ischia
+        </div>
 
-        <div class="subtitle">Una serata tra libri, musica e incontri</div>
+        <h1>
+          Giunti in <span class="orange">Oriente</span>
+        </h1>
+
+        <div class="subtitle">
+          Una serata tra libri, musica e incontri
+        </div>
 
         <div class="date-badge">
           <span>14</span>
+
           <div>
             <strong>Maggio 2026</strong><br />
             dalle ore 19:00
@@ -261,10 +316,12 @@
         </div>
 
         <div class="box">
-          Una serata speciale dedicata ai libri, alla condivisione, alla musica e alla beneficenza.
+          Una serata speciale dedicata ai libri,
+          alla condivisione, alla musica e alla beneficenza.
         </div>
 
         <div class="actions">
+
           <a
             class="button primary"
             href="https://www.google.com/maps/search/?api=1&query=Oriente+Hotel+Terme+Via+delle+Terme+5+Ischia"
@@ -283,25 +340,41 @@
           >
             Condividi su WhatsApp
           </a>
+
         </div>
+
       </div>
 
     </div>
+
   </main>
 
   <footer>
     In collaborazione con Giunti al Punto · Ischia
   </footer>
 
-  <!-- MUSICA INVISIBILE -->
-  <audio id="bgMusic"></audio>
+  <!-- SIDEBAR VOLUME -->
 
-  <div class="volume-control">
-    <span>🔉</span>
-    <input type="range" id="volumeSlider" min="0" max="100" value="15" />
+  <div class="volume-sidebar">
+
+    <span>🔊</span>
+
+    <input
+      type="range"
+      id="volumeSlider"
+      min="0"
+      max="100"
+      value="15"
+    >
+
   </div>
 
+  <!-- MUSICA -->
+
+  <audio id="bgMusic"></audio>
+
   <script>
+
     const tracks = [
       "musica1.mp3",
       "musica2.mp3",
@@ -316,74 +389,125 @@
 
     music.volume = volumeSlider.value / 100;
 
+    // shuffle playlist
+
     function shuffle(array) {
+
       for (let i = array.length - 1; i > 0; i--) {
+
         const j = Math.floor(Math.random() * (i + 1));
+
         [array[i], array[j]] = [array[j], array[i]];
       }
     }
 
     shuffle(tracks);
 
+    // fade in
+
     function fadeIn(audio) {
+
       audio.volume = 0;
+
       let targetVolume = volumeSlider.value / 100;
+
       let vol = 0;
 
       const interval = setInterval(() => {
+
         if (vol < targetVolume) {
+
           vol += 0.01;
+
           audio.volume = Math.min(vol, targetVolume);
+
         } else {
+
           clearInterval(interval);
         }
+
       }, 200);
     }
 
+    // fade out
+
     function fadeOut(audio, callback) {
+
       let vol = audio.volume;
 
       const interval = setInterval(() => {
+
         if (vol > 0.02) {
+
           vol -= 0.02;
+
           audio.volume = Math.max(vol, 0);
+
         } else {
+
           clearInterval(interval);
+
           callback();
         }
+
       }, 180);
     }
 
+    // play
+
     function playTrack(index) {
+
       music.src = tracks[index];
+
       music.play().catch(() => {});
+
       fadeIn(music);
     }
 
+    // cambio automatico traccia
+
     music.addEventListener("ended", () => {
+
       fadeOut(music, () => {
+
         currentTrack++;
 
         if (currentTrack >= tracks.length) {
+
           currentTrack = 0;
+
           shuffle(tracks);
         }
 
         playTrack(currentTrack);
+
       });
+
     });
+
+    // controllo volume
 
     volumeSlider.addEventListener("input", () => {
+
       music.volume = volumeSlider.value / 100;
+
     });
 
+    // avvio mobile-safe
+
     document.addEventListener("click", () => {
+
       if (!hasStarted) {
+
         hasStarted = true;
+
         playTrack(currentTrack);
       }
+
     }, { once: true });
+
   </script>
 
 </body>
+
 </html>
