@@ -9,10 +9,11 @@
 
   <meta
     name="description"
-    content="Giunti in Oriente - Book Party a Ischia. Evento con libri, aperitivo, musica e beneficenza il 14 maggio alle ore 19:00 presso Oriente Hotel Terme."
+    content="Giunti in Oriente - Book Party a Ischia. Evento con libri, aperitivo, musica e beneficenza il 14 maggio dalle ore 19:00 presso Oriente Hotel Terme."
   />
 
   <!-- OPEN GRAPH -->
+
   <meta property="og:title" content="Giunti in Oriente - Book Party a Ischia" />
 
   <meta
@@ -22,12 +23,15 @@
 
   <!-- CAMBIA CON IL TUO DOMINIO -->
   <meta property="og:image" content="https://bookparty.github.io/manifesto.JPG" />
+
+  <!-- CAMBIA CON IL TUO DOMINIO -->
   <meta property="og:url" content="https://bookparty.github.io" />
 
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="it_IT" />
 
   <style>
+
     * {
       box-sizing: border-box;
     }
@@ -204,50 +208,7 @@
       font-size: 15px;
     }
 
-    /* SIDEBAR VOLUME */
-
-    .volume-sidebar {
-      position: fixed;
-      top: 50%;
-      right: 18px;
-      transform: translateY(-50%);
-      width: 58px;
-      height: 210px;
-      background: rgba(13,44,84,0.92);
-      border-radius: 999px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 18px;
-      z-index: 999;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
-      backdrop-filter: blur(10px);
-    }
-
-    .volume-sidebar span {
-      color: white;
-      font-size: 18px;
-    }
-
-    #volumeSlider {
-      -webkit-appearance: slider-vertical;
-      width: 8px;
-      height: 120px;
-      cursor: pointer;
-    }
-
     @media (max-width: 768px) {
-
-      .volume-sidebar {
-        right: 10px;
-        width: 50px;
-        height: 180px;
-      }
-
-      #volumeSlider {
-        height: 100px;
-      }
 
       .content {
         padding: 28px 22px;
@@ -265,6 +226,7 @@
         font-size: 19px;
       }
     }
+
   </style>
 </head>
 
@@ -296,12 +258,14 @@
         </div>
 
         <div class="date-badge">
+
           <span>14</span>
 
           <div>
             <strong>Maggio 2026</strong><br />
             dalle ore 19:00
           </div>
+
         </div>
 
         <div class="info">
@@ -332,6 +296,7 @@
           </a>
 
           <!-- CAMBIA CON IL TUO DOMINIO -->
+
           <a
             class="button secondary"
             href="https://wa.me/?text=Partecipa%20al%20Book%20Party%20Giunti%20in%20Oriente%20a%20Ischia!%20📚%0Ahttps://bookparty.github.io"
@@ -353,25 +318,9 @@
     In collaborazione con Giunti al Punto · Ischia
   </footer>
 
-  <!-- SIDEBAR VOLUME -->
+  <!-- MUSICA AUTOMATICA INVISIBILE -->
 
-  <div class="volume-sidebar">
-
-    <span>🔊</span>
-
-    <input
-      type="range"
-      id="volumeSlider"
-      min="0"
-      max="100"
-      value="15"
-    >
-
-  </div>
-
-  <!-- MUSICA -->
-
-  <audio id="bgMusic"></audio>
+  <audio id="bgMusic" autoplay></audio>
 
   <script>
 
@@ -382,12 +331,12 @@
     ];
 
     const music = document.getElementById("bgMusic");
-    const volumeSlider = document.getElementById("volumeSlider");
 
     let currentTrack = 0;
-    let hasStarted = false;
 
-    music.volume = volumeSlider.value / 100;
+    // volume iniziale
+
+    music.volume = 0.15;
 
     // shuffle playlist
 
@@ -409,17 +358,15 @@
 
       audio.volume = 0;
 
-      let targetVolume = volumeSlider.value / 100;
-
       let vol = 0;
 
       const interval = setInterval(() => {
 
-        if (vol < targetVolume) {
+        if (vol < 0.15) {
 
           vol += 0.01;
 
-          audio.volume = Math.min(vol, targetVolume);
+          audio.volume = vol;
 
         } else {
 
@@ -453,18 +400,28 @@
       }, 180);
     }
 
-    // play
+    // play traccia
 
     function playTrack(index) {
 
       music.src = tracks[index];
 
-      music.play().catch(() => {});
+      music.play().then(() => {
 
-      fadeIn(music);
+        fadeIn(music);
+
+      }).catch(() => {
+
+        // fallback mobile autoplay
+
+        document.addEventListener("click", () => {
+          music.play();
+        }, { once: true });
+
+      });
     }
 
-    // cambio automatico traccia
+    // cambio automatico
 
     music.addEventListener("ended", () => {
 
@@ -485,26 +442,9 @@
 
     });
 
-    // controllo volume
+    // start automatico
 
-    volumeSlider.addEventListener("input", () => {
-
-      music.volume = volumeSlider.value / 100;
-
-    });
-
-    // avvio mobile-safe
-
-    document.addEventListener("click", () => {
-
-      if (!hasStarted) {
-
-        hasStarted = true;
-
-        playTrack(currentTrack);
-      }
-
-    }, { once: true });
+    playTrack(currentTrack);
 
   </script>
 
