@@ -12,23 +12,17 @@
     content="Giunti in Oriente - Book Party a Ischia. Evento con libri, aperitivo, musica e beneficenza il 14 maggio alle ore 19:00 presso Oriente Hotel Terme."
   />
 
-  <!-- OPEN GRAPH -->
-
   <meta property="og:title" content="Giunti in Oriente - Book Party a Ischia" />
-
   <meta
     property="og:description"
     content="Porta un libro e partecipa al Book Party il 14 maggio alle ore 19:00 all'Oriente Hotel Terme di Ischia."
   />
-
   <meta property="og:image" content="https://bookparty.github.io/manifesto.JPG" />
   <meta property="og:url" content="https://bookparty.github.io" />
-
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="it_IT" />
 
   <style>
-
     * {
       box-sizing: border-box;
     }
@@ -41,6 +35,72 @@
         linear-gradient(180deg, #fff1e6 0%, #f7d4c1 100%);
       color: #0d2c54;
       min-height: 100vh;
+    }
+
+    /* WELCOME SCREEN */
+
+    #welcomeScreen {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at top, rgba(239,107,46,0.35), transparent 35%),
+        linear-gradient(180deg, #fff1e6 0%, #f7d4c1 100%);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      transition: opacity 0.7s ease;
+    }
+
+    .welcome-card {
+      max-width: 540px;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(12px);
+      border-radius: 34px;
+      padding: 44px 32px;
+      text-align: center;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+    }
+
+    .welcome-small {
+      color: #ef6b2e;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    .welcome-card h2 {
+      font-size: clamp(38px, 7vw, 62px);
+      line-height: 1;
+      margin: 0 0 18px;
+      color: #0d2c54;
+    }
+
+    .welcome-card p {
+      font-size: 20px;
+      line-height: 1.5;
+      margin: 0 0 28px;
+    }
+
+    #enterButton {
+      border: none;
+      background: #ef6b2e;
+      color: white;
+      padding: 18px 30px;
+      border-radius: 999px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 12px 28px rgba(239,107,46,0.28);
+      transition: 0.25s ease;
+    }
+
+    #enterButton:hover {
+      background: #d9551d;
+      transform: translateY(-2px);
     }
 
     .hero {
@@ -200,38 +260,12 @@
 
     footer {
       text-align: center;
-      padding: 28px 20px 110px;
+      padding: 28px 20px;
       color: #0d2c54;
       font-size: 15px;
     }
 
-    /* BOTTONE MUSICA */
-
-    #musicButton {
-      position: fixed;
-      bottom: 22px;
-      right: 22px;
-      border: none;
-      background: rgba(13,44,84,0.95);
-      color: white;
-      padding: 16px 22px;
-      border-radius: 999px;
-      font-size: 15px;
-      font-weight: bold;
-      cursor: pointer;
-      z-index: 999;
-      box-shadow: 0 12px 28px rgba(0,0,0,0.18);
-      backdrop-filter: blur(10px);
-      transition: 0.25s ease;
-    }
-
-    #musicButton:hover {
-      background: #123b70;
-      transform: translateY(-2px);
-    }
-
     @media (max-width: 768px) {
-
       .content {
         padding: 28px 22px;
       }
@@ -248,23 +282,37 @@
         font-size: 19px;
       }
 
-      #musicButton {
-        right: 50%;
-        transform: translateX(50%);
+      .welcome-card {
+        padding: 38px 24px;
       }
 
-      #musicButton:hover {
-        transform: translateX(50%);
+      .welcome-card p {
+        font-size: 18px;
       }
     }
-
   </style>
 </head>
 
 <body>
 
-  <main class="hero">
+  <div id="welcomeScreen">
+    <div class="welcome-card">
+      <div class="welcome-small">Giunti in Oriente presenta</div>
 
+      <h2>Benvenuto al Book Party</h2>
+
+      <p>
+        Lasciati accompagnare in una serata tra libri, musica,
+        incontri e atmosfera d’Oriente.
+      </p>
+
+      <button id="enterButton">
+        Entra nell’evento
+      </button>
+    </div>
+  </div>
+
+  <main class="hero">
     <div class="container">
 
       <div class="poster">
@@ -289,14 +337,12 @@
         </div>
 
         <div class="date-badge">
-
           <span>14</span>
 
           <div>
             <strong>Maggio 2026</strong><br />
             dalle ore 19:00
           </div>
-
         </div>
 
         <div class="info">
@@ -336,29 +382,18 @@
           </a>
 
         </div>
-
       </div>
 
     </div>
-
   </main>
 
   <footer>
     In collaborazione con Giunti al Punto · Ischia
   </footer>
 
-  <!-- BOTTONE MUSICA -->
-
-  <button id="musicButton">
-    🎵 Attiva musica
-  </button>
-
-  <!-- AUDIO -->
-
   <audio id="bgMusic"></audio>
 
   <script>
-
     const tracks = [
       "musica1.mp3",
       "musica2.mp3",
@@ -366,18 +401,16 @@
     ];
 
     const music = document.getElementById("bgMusic");
-    const musicButton = document.getElementById("musicButton");
+    const enterButton = document.getElementById("enterButton");
+    const welcomeScreen = document.getElementById("welcomeScreen");
 
     let currentTrack = 0;
 
     music.volume = 0.18;
 
     function shuffle(array) {
-
       for (let i = array.length - 1; i > 0; i--) {
-
         const j = Math.floor(Math.random() * (i + 1));
-
         [array[i], array[j]] = [array[j], array[i]];
       }
     }
@@ -385,59 +418,46 @@
     shuffle(tracks);
 
     function fadeIn(audio) {
-
       audio.volume = 0;
-
       let vol = 0;
 
       const interval = setInterval(() => {
-
         if (vol < 0.18) {
-
           vol += 0.01;
-
           audio.volume = vol;
-
         } else {
-
           clearInterval(interval);
         }
-
       }, 200);
     }
 
     function playTrack(index) {
-
       music.src = tracks[index];
-
       music.play();
-
       fadeIn(music);
-
-      musicButton.style.display = "none";
     }
 
     music.addEventListener("ended", () => {
-
       currentTrack++;
 
       if (currentTrack >= tracks.length) {
-
         currentTrack = 0;
-
         shuffle(tracks);
       }
 
       playTrack(currentTrack);
-
     });
 
-    musicButton.addEventListener("click", () => {
+    enterButton.addEventListener("click", () => {
+      welcomeScreen.style.opacity = "0";
+      welcomeScreen.style.pointerEvents = "none";
+
+      setTimeout(() => {
+        welcomeScreen.style.display = "none";
+      }, 700);
 
       playTrack(currentTrack);
-
     });
-
   </script>
 
 </body>
