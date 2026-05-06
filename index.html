@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Giunti in Oriente - Book Party a Ischia | 14 Maggio</title>
 
-  <meta name="description" content="Giunti in Oriente - Book Party a Ischia. Evento con libri, aperitivo, musica e beneficenza il 14 maggio alle ore 19:00 presso Oriente Hotel Terme.">
-  <meta name="keywords" content="Giunti in Oriente, Book Party Ischia, evento libri Ischia, Oriente Hotel Terme, Giunti al Punto Ischia, eventi Ischia maggio">
-  <meta name="author" content="Giunti in Oriente">
+  <meta name="description" content="Giunti in Oriente - Book Party a Ischia. Evento con libri, aperitivo, musica e beneficenza il 14 maggio alle ore 19:00 presso Oriente Hotel Terme." />
+  <meta name="keywords" content="Giunti in Oriente, Book Party Ischia, evento libri Ischia, Oriente Hotel Terme, Giunti al Punto Ischia, eventi Ischia maggio" />
+  <meta name="author" content="Giunti in Oriente" />
 
-  <meta property="og:title" content="Giunti in Oriente - Book Party a Ischia">
-  <meta property="og:description" content="Porta un libro e partecipa al Book Party il 14 maggio dalle ore 19:00 all'Oriente Hotel Terme di Ischia.">
-  <meta property="og:image" content="manifesto.JPG">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="it_IT">
+  <meta property="og:title" content="Giunti in Oriente - Book Party a Ischia" />
+  <meta property="og:description" content="Porta un libro e partecipa al Book Party il 14 maggio dalle ore 19:00 all'Oriente Hotel Terme di Ischia." />
+  <meta property="og:image" content="manifesto.JPG" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="it_IT" />
 
   <script type="application/ld+json">
   {
@@ -43,9 +43,13 @@
   </script>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: Georgia, 'Times New Roman', serif;
+      font-family: Georgia, "Times New Roman", serif;
       background: #fff1e6;
       color: #0d2c54;
     }
@@ -55,36 +59,79 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 40px 20px;
+      padding: 50px 20px;
       background:
-        radial-gradient(circle at top left, #ffcf9f, transparent 35%),
-        linear-gradient(135deg, #fff1e6 0%, #f7d4c1 100%);
+        radial-gradient(circle at top left, rgba(239,107,46,0.35), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(13,44,84,0.18), transparent 30%),
+        linear-gradient(135deg, #fff1e6 0%, #f8d7c5 100%);
+      overflow: hidden;
     }
 
     .container {
-      max-width: 1100px;
+      width: 100%;
+      max-width: 1150px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 45px;
       align-items: center;
     }
 
+    .poster {
+      position: relative;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .poster::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      background: #ef6b2e;
+      border-radius: 30px;
+      transform: rotate(-5deg);
+      z-index: 0;
+      opacity: 0.45;
+    }
+
     .poster img {
+      position: relative;
+      z-index: 1;
       width: 100%;
-      border-radius: 28px;
-      box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+      display: block;
+      border-radius: 30px;
+      box-shadow: 0 25px 55px rgba(0,0,0,0.28);
+      transform: rotate(-2deg);
+      transition: transform 0.35s ease;
+    }
+
+    .poster img:hover {
+      transform: rotate(0deg) scale(1.02);
     }
 
     .content {
-      background: rgba(255,255,255,0.75);
-      padding: 40px;
-      border-radius: 28px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      background: rgba(255,255,255,0.78);
+      backdrop-filter: blur(10px);
+      padding: 42px;
+      border-radius: 32px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.13);
+      animation: fadeUp 0.9s ease both;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 8px 16px;
+      background: rgba(239,107,46,0.14);
+      color: #ef6b2e;
+      border-radius: 999px;
+      font-weight: bold;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
 
     h1 {
-      font-size: 58px;
-      line-height: 1;
+      font-size: clamp(44px, 6vw, 72px);
+      line-height: 0.95;
       margin: 0;
       color: #0d2c54;
     }
@@ -94,41 +141,101 @@
     }
 
     .subtitle {
-      font-size: 28px;
-      margin: 15px 0 25px;
+      font-size: clamp(24px, 3vw, 34px);
+      margin: 18px 0 26px;
       color: #ef6b2e;
       font-weight: bold;
+    }
+
+    .date-badge {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin: 25px 0;
+      padding: 20px;
+      background: #0d2c54;
+      color: white;
+      border-radius: 24px;
+    }
+
+    .date-badge span {
+      display: block;
+      font-size: 58px;
+      line-height: 1;
+      color: #ffcf9f;
+      font-weight: bold;
+    }
+
+    .date-badge div {
+      font-size: 22px;
+      line-height: 1.35;
     }
 
     .info {
       font-size: 21px;
       line-height: 1.6;
-      margin: 20px 0;
+      margin: 22px 0;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 24px 0;
+    }
+
+    .feature {
+      background: #fff7f0;
+      border: 1px solid rgba(239,107,46,0.25);
+      padding: 16px 12px;
+      border-radius: 18px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.06);
     }
 
     .box {
-      background: #0d2c54;
-      color: white;
+      background: #fff;
+      border-left: 6px solid #ef6b2e;
+      color: #0d2c54;
       padding: 22px;
       border-radius: 20px;
-      margin-top: 25px;
+      margin-top: 24px;
       font-size: 20px;
+      line-height: 1.5;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
     }
 
     .button {
       display: inline-block;
-      margin-top: 25px;
-      padding: 16px 28px;
+      padding: 16px 26px;
       background: #ef6b2e;
       color: white;
       text-decoration: none;
-      border-radius: 40px;
+      border-radius: 999px;
       font-weight: bold;
       font-size: 18px;
+      transition: transform 0.25s ease, background 0.25s ease;
     }
 
     .button:hover {
       background: #d9551d;
+      transform: translateY(-2px);
+    }
+
+    .button.secondary {
+      background: #0d2c54;
+    }
+
+    .button.secondary:hover {
+      background: #123b70;
     }
 
     footer {
@@ -139,27 +246,55 @@
       font-size: 16px;
     }
 
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     @media (max-width: 850px) {
+      .hero {
+        padding: 30px 18px;
+      }
+
       .container {
         grid-template-columns: 1fr;
+        gap: 30px;
       }
 
-      h1 {
-        font-size: 42px;
-        text-align: center;
+      .content {
+        padding: 30px 24px;
       }
 
+      h1,
       .subtitle,
       .info {
         text-align: center;
       }
 
-      .content {
-        padding: 28px;
+      .eyebrow {
+        display: block;
+        text-align: center;
+      }
+
+      .date-badge {
+        justify-content: center;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .actions {
+        flex-direction: column;
       }
 
       .button {
-        display: block;
         text-align: center;
       }
     }
@@ -172,27 +307,48 @@
     <div class="container">
 
       <div class="poster">
-        <img src="manifesto.JPG" alt="Manifesto evento Giunti in Oriente Book Party a Ischia">
+        <img src="manifesto.JPG" alt="Manifesto evento Giunti in Oriente Book Party a Ischia" />
       </div>
 
       <div class="content">
+        <div class="eyebrow">Evento speciale a Ischia</div>
+
         <h1>Giunti in <span class="orange">Oriente</span></h1>
-        <div class="subtitle">Book Party</div>
+
+        <div class="subtitle">Una serata tra libri, musica e incontri</div>
+
+        <div class="date-badge">
+          <span>14</span>
+          <div>
+            <strong>Maggio 2026</strong><br />
+            dalle ore 19:00
+          </div>
+        </div>
 
         <div class="info">
-          <strong>Il 14 maggio dalle ore 19:00</strong><br>
-          Oriente Hotel Terme<br>
+          <strong>Oriente Hotel Terme</strong><br />
           Via delle Terme 5, Ischia
         </div>
 
-        <div class="box">
-          📚 Porta con te un libro.<br>
-          Una serata tra letture, aperitivo, musica, incontri e beneficenza.
+        <div class="features">
+          <div class="feature">📚 Porta un libro</div>
+          <div class="feature">🍸 Aperitivo</div>
+          <div class="feature">🎶 Musica</div>
         </div>
 
-        <a class="button" href="https://www.google.com/maps/search/?api=1&query=Oriente+Hotel+Terme+Via+delle+Terme+5+Ischia" target="_blank">
-          Apri la mappa
-        </a>
+        <div class="box">
+          Una serata speciale dedicata ai libri, alla condivisione, agli incontri e alla beneficenza.
+        </div>
+
+        <div class="actions">
+          <a class="button" href="https://www.google.com/maps/search/?api=1&query=Oriente+Hotel+Terme+Via+delle+Terme+5+Ischia" target="_blank" rel="noopener noreferrer">
+            Apri la mappa
+          </a>
+
+          <a class="button secondary" href="https://wa.me/?text=Partecipa%20al%20Book%20Party%20Giunti%20in%20Oriente%20a%20Ischia%20il%2014%20maggio%202026%20alle%2019%3A00%20presso%20Oriente%20Hotel%20Terme!" target="_blank" rel="noopener noreferrer">
+            Condividi su WhatsApp
+          </a>
+        </div>
       </div>
 
     </div>
