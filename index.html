@@ -9,7 +9,7 @@
 
   <meta
     name="description"
-    content="Giunti in Oriente - Book Party a Ischia. Evento con libri, aperitivo, musica e beneficenza il 14 maggio dalle ore 19:00 presso Oriente Hotel Terme."
+    content="Giunti in Oriente - Book Party a Ischia. Evento con libri, aperitivo, musica e beneficenza il 14 maggio alle ore 19:00 presso Oriente Hotel Terme."
   />
 
   <!-- OPEN GRAPH -->
@@ -21,10 +21,7 @@
     content="Porta un libro e partecipa al Book Party il 14 maggio alle ore 19:00 all'Oriente Hotel Terme di Ischia."
   />
 
-  <!-- CAMBIA CON IL TUO DOMINIO -->
   <meta property="og:image" content="https://bookparty.github.io/manifesto.JPG" />
-
-  <!-- CAMBIA CON IL TUO DOMINIO -->
   <meta property="og:url" content="https://bookparty.github.io" />
 
   <meta property="og:type" content="website" />
@@ -203,9 +200,34 @@
 
     footer {
       text-align: center;
-      padding: 28px 20px;
+      padding: 28px 20px 110px;
       color: #0d2c54;
       font-size: 15px;
+    }
+
+    /* BOTTONE MUSICA */
+
+    #musicButton {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      border: none;
+      background: rgba(13,44,84,0.95);
+      color: white;
+      padding: 16px 22px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+      backdrop-filter: blur(10px);
+      transition: 0.25s ease;
+    }
+
+    #musicButton:hover {
+      background: #123b70;
+      transform: translateY(-2px);
     }
 
     @media (max-width: 768px) {
@@ -224,6 +246,15 @@
 
       .info {
         font-size: 19px;
+      }
+
+      #musicButton {
+        right: 50%;
+        transform: translateX(50%);
+      }
+
+      #musicButton:hover {
+        transform: translateX(50%);
       }
     }
 
@@ -295,8 +326,6 @@
             Apri la mappa
           </a>
 
-          <!-- CAMBIA CON IL TUO DOMINIO -->
-
           <a
             class="button secondary"
             href="https://wa.me/?text=Partecipa%20al%20Book%20Party%20Giunti%20in%20Oriente%20a%20Ischia!%20📚%0Ahttps://bookparty.github.io"
@@ -318,9 +347,15 @@
     In collaborazione con Giunti al Punto · Ischia
   </footer>
 
-  <!-- MUSICA AUTOMATICA INVISIBILE -->
+  <!-- BOTTONE MUSICA -->
 
-  <audio id="bgMusic" autoplay></audio>
+  <button id="musicButton">
+    🎵 Attiva musica
+  </button>
+
+  <!-- AUDIO -->
+
+  <audio id="bgMusic"></audio>
 
   <script>
 
@@ -331,14 +366,11 @@
     ];
 
     const music = document.getElementById("bgMusic");
+    const musicButton = document.getElementById("musicButton");
 
     let currentTrack = 0;
 
-    // volume iniziale
-
-    music.volume = 0.15;
-
-    // shuffle playlist
+    music.volume = 0.18;
 
     function shuffle(array) {
 
@@ -352,8 +384,6 @@
 
     shuffle(tracks);
 
-    // fade in
-
     function fadeIn(audio) {
 
       audio.volume = 0;
@@ -362,7 +392,7 @@
 
       const interval = setInterval(() => {
 
-        if (vol < 0.15) {
+        if (vol < 0.18) {
 
           vol += 0.01;
 
@@ -376,75 +406,37 @@
       }, 200);
     }
 
-    // fade out
-
-    function fadeOut(audio, callback) {
-
-      let vol = audio.volume;
-
-      const interval = setInterval(() => {
-
-        if (vol > 0.02) {
-
-          vol -= 0.02;
-
-          audio.volume = Math.max(vol, 0);
-
-        } else {
-
-          clearInterval(interval);
-
-          callback();
-        }
-
-      }, 180);
-    }
-
-    // play traccia
-
     function playTrack(index) {
 
       music.src = tracks[index];
 
-      music.play().then(() => {
+      music.play();
 
-        fadeIn(music);
+      fadeIn(music);
 
-      }).catch(() => {
-
-        // fallback mobile autoplay
-
-        document.addEventListener("click", () => {
-          music.play();
-        }, { once: true });
-
-      });
+      musicButton.style.display = "none";
     }
-
-    // cambio automatico
 
     music.addEventListener("ended", () => {
 
-      fadeOut(music, () => {
+      currentTrack++;
 
-        currentTrack++;
+      if (currentTrack >= tracks.length) {
 
-        if (currentTrack >= tracks.length) {
+        currentTrack = 0;
 
-          currentTrack = 0;
+        shuffle(tracks);
+      }
 
-          shuffle(tracks);
-        }
-
-        playTrack(currentTrack);
-
-      });
+      playTrack(currentTrack);
 
     });
 
-    // start automatico
+    musicButton.addEventListener("click", () => {
 
-    playTrack(currentTrack);
+      playTrack(currentTrack);
+
+    });
 
   </script>
 
