@@ -12,17 +12,23 @@
     content="Giunti in Oriente - Book Party a Ischia. Evento con libri, aperitivo, musica e beneficenza il 14 maggio alle ore 19:00 presso Oriente Hotel Terme."
   />
 
+  <!-- OPEN GRAPH -->
+
   <meta property="og:title" content="Giunti in Oriente - Book Party a Ischia" />
+
   <meta
     property="og:description"
     content="Porta un libro e partecipa al Book Party il 14 maggio alle ore 19:00 all'Oriente Hotel Terme di Ischia."
   />
+
   <meta property="og:image" content="https://bookparty.github.io/manifesto.JPG" />
   <meta property="og:url" content="https://bookparty.github.io" />
+
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="it_IT" />
 
   <style>
+
     * {
       box-sizing: border-box;
     }
@@ -35,6 +41,7 @@
         linear-gradient(180deg, #fff1e6 0%, #f7d4c1 100%);
       color: #0d2c54;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
     /* WELCOME SCREEN */
@@ -50,8 +57,111 @@
       align-items: center;
       justify-content: center;
       padding: 24px;
+      overflow: hidden;
       transition: opacity 0.7s ease;
     }
+
+    /* DREAM SCENE */
+
+    .dream-scene {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .moon {
+      position: absolute;
+      top: 8%;
+      right: 16%;
+      width: 120px;
+      height: 120px;
+      background: #fff7d6;
+      border-radius: 50%;
+      box-shadow:
+        0 0 40px rgba(255,247,214,0.8),
+        0 0 90px rgba(255,207,159,0.55);
+      animation: floatMoon 6s ease-in-out infinite;
+    }
+
+    .reader {
+      position: absolute;
+      top: 18%;
+      right: 18%;
+      font-size: 54px;
+      z-index: 2;
+      animation: readerFloat 4s ease-in-out infinite;
+      filter: drop-shadow(0 12px 18px rgba(0,0,0,0.22));
+    }
+
+    .stars::before,
+    .stars::after {
+      content: "✦ ✧ ✦ ✧ ✦ ✧ ✦";
+      position: absolute;
+      color: rgba(255,255,255,0.95);
+      font-size: 22px;
+      letter-spacing: 22px;
+      animation: twinkle 2.8s ease-in-out infinite alternate;
+    }
+
+    .stars::before {
+      top: 14%;
+      left: 10%;
+    }
+
+    .stars::after {
+      top: 34%;
+      right: 8%;
+      font-size: 16px;
+      animation-delay: 1s;
+    }
+
+    .cloud {
+      position: absolute;
+      width: 180px;
+      height: 54px;
+      background: rgba(255,255,255,0.45);
+      border-radius: 999px;
+      filter: blur(1px);
+    }
+
+    .cloud::before,
+    .cloud::after {
+      content: "";
+      position: absolute;
+      background: rgba(255,255,255,0.45);
+      border-radius: 50%;
+    }
+
+    .cloud::before {
+      width: 76px;
+      height: 76px;
+      left: 24px;
+      top: -36px;
+    }
+
+    .cloud::after {
+      width: 96px;
+      height: 96px;
+      right: 22px;
+      top: -50px;
+    }
+
+    .cloud-one {
+      bottom: 18%;
+      left: -220px;
+      animation: cloudMove 22s linear infinite;
+    }
+
+    .cloud-two {
+      top: 22%;
+      left: -260px;
+      transform: scale(0.75);
+      animation: cloudMove 30s linear infinite;
+      animation-delay: 5s;
+    }
+
+    /* WELCOME CARD */
 
     .welcome-card {
       max-width: 540px;
@@ -61,6 +171,8 @@
       padding: 44px 32px;
       text-align: center;
       box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+      position: relative;
+      z-index: 2;
     }
 
     .welcome-small {
@@ -102,6 +214,8 @@
       background: #d9551d;
       transform: translateY(-2px);
     }
+
+    /* PAGE */
 
     .hero {
       width: 100%;
@@ -265,7 +379,50 @@
       font-size: 15px;
     }
 
+    /* ANIMATIONS */
+
+    @keyframes floatMoon {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    @keyframes readerFloat {
+      0%, 100% {
+        transform: translateY(0) rotate(-4deg);
+      }
+
+      50% {
+        transform: translateY(-14px) rotate(3deg);
+      }
+    }
+
+    @keyframes twinkle {
+      from {
+        opacity: 0.35;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes cloudMove {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(calc(100vw + 320px));
+      }
+    }
+
     @media (max-width: 768px) {
+
       .content {
         padding: 28px 22px;
       }
@@ -290,28 +447,57 @@
         font-size: 18px;
       }
     }
+
   </style>
 </head>
 
 <body>
 
-  <div id="welcomeScreen">
-    <div class="welcome-card">
-      <div class="welcome-small">Giunti al Punto Ischia presenta</div>
+  <!-- WELCOME -->
 
-      <h2>Benvenuto al Book Party</h2>
+  <div id="welcomeScreen">
+
+    <div class="dream-scene">
+
+      <div class="moon"></div>
+
+      <div class="stars"></div>
+
+      <div class="reader">📖</div>
+
+      <div class="cloud cloud-one"></div>
+
+      <div class="cloud cloud-two"></div>
+
+    </div>
+
+    <div class="welcome-card">
+
+      <div class="welcome-small">
+        Giunti in Oriente presenta
+      </div>
+
+      <h2>
+        Benvenuto al Book Party
+      </h2>
 
       <p>
-        Lasciati accompagnare in una serata dove ci sei solo tu e il tuo libro. 
+        Lasciati accompagnare in una serata tra libri,
+        musica, incontri e atmosfera d’Oriente.
       </p>
 
       <button id="enterButton">
         Entra nell’evento
       </button>
+
     </div>
+
   </div>
 
+  <!-- PAGE -->
+
   <main class="hero">
+
     <div class="container">
 
       <div class="poster">
@@ -336,12 +522,14 @@
         </div>
 
         <div class="date-badge">
+
           <span>14</span>
 
           <div>
             <strong>Maggio 2026</strong><br />
             dalle ore 19:00
           </div>
+
         </div>
 
         <div class="info">
@@ -381,18 +569,23 @@
           </a>
 
         </div>
+
       </div>
 
     </div>
+
   </main>
 
   <footer>
     In collaborazione con Giunti al Punto · Ischia
   </footer>
 
+  <!-- AUDIO -->
+
   <audio id="bgMusic"></audio>
 
   <script>
+
     const tracks = [
       "musica1.mp3",
       "musica2.mp3",
@@ -408,8 +601,11 @@
     music.volume = 0.18;
 
     function shuffle(array) {
+
       for (let i = array.length - 1; i > 0; i--) {
+
         const j = Math.floor(Math.random() * (i + 1));
+
         [array[i], array[j]] = [array[j], array[i]];
       }
     }
@@ -417,46 +613,67 @@
     shuffle(tracks);
 
     function fadeIn(audio) {
+
       audio.volume = 0;
+
       let vol = 0;
 
       const interval = setInterval(() => {
+
         if (vol < 0.18) {
+
           vol += 0.01;
+
           audio.volume = vol;
+
         } else {
+
           clearInterval(interval);
         }
+
       }, 200);
     }
 
     function playTrack(index) {
+
       music.src = tracks[index];
+
       music.play();
+
       fadeIn(music);
     }
 
     music.addEventListener("ended", () => {
+
       currentTrack++;
 
       if (currentTrack >= tracks.length) {
+
         currentTrack = 0;
+
         shuffle(tracks);
       }
 
       playTrack(currentTrack);
+
     });
 
     enterButton.addEventListener("click", () => {
+
       welcomeScreen.style.opacity = "0";
+
       welcomeScreen.style.pointerEvents = "none";
 
       setTimeout(() => {
+
         welcomeScreen.style.display = "none";
+
       }, 700);
 
       playTrack(currentTrack);
+
     });
+
   </script>
 
 </body>
