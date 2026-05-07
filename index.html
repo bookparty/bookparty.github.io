@@ -5,14 +5,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Giunti in Oriente - Book Party</title>
+  <title>Giunti in Oriente - Book Party a Ischia | 14 Maggio</title>
 
-  <meta name="description"
-    content="Giunti in Oriente - Book Party a Ischia. Una serata tra libri, musica e incontri." />
+  <meta
+    name="description"
+    content="Giunti in Oriente - Book Party a Ischia. Evento con libri, aperitivo, musica e beneficenza il 14 maggio alle ore 19:00 presso Oriente Hotel Terme."
+  />
 
-  <meta property="og:title" content="Giunti in Oriente - Book Party" />
-  <meta property="og:description"
-    content="Partecipa al Book Party il 14 Maggio all'Oriente Hotel Terme." />
+  <!-- OPEN GRAPH -->
+
+  <meta property="og:title" content="Giunti in Oriente - Book Party a Ischia" />
+
+  <meta
+    property="og:description"
+    content="Porta un libro e partecipa al Book Party il 14 maggio alle ore 19:00 all'Oriente Hotel Terme di Ischia."
+  />
 
   <meta property="og:image" content="https://bookparty.github.io/manifesto.JPG" />
   <meta property="og:url" content="https://bookparty.github.io" />
@@ -21,6 +28,7 @@
   <meta property="og:locale" content="it_IT" />
 
   <style>
+
     * {
       box-sizing: border-box;
     }
@@ -29,254 +37,237 @@
       margin: 0;
       font-family: Georgia, "Times New Roman", serif;
       background:
-        radial-gradient(circle at center bottom,
-          rgba(239, 107, 46, 0.25),
-          transparent 35%),
-        linear-gradient(180deg,
-          #041024 0%,
-          #0b2042 50%,
-          #f4dcc7 140%);
-      color: white;
+        radial-gradient(circle at top, rgba(239,107,46,0.22), transparent 30%),
+        linear-gradient(180deg, #fff1e6 0%, #f7d4c1 100%);
+      color: #0d2c54;
+      min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* INTRO */
+    /* WELCOME SCREEN */
 
     #welcomeScreen {
-      position: relative;
-      width: 100%;
-      min-height: 100vh;
-      overflow: hidden;
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at top, rgba(239,107,46,0.35), transparent 35%),
+        linear-gradient(180deg, #fff1e6 0%, #f7d4c1 100%);
+      z-index: 9999;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      cursor: pointer;
+      padding: 24px;
+      overflow: hidden;
+      transition: opacity 0.7s ease;
+    }
+
+    /* DREAM SCENE */
+
+    .dream-scene {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
     }
 
     .moon {
       position: absolute;
-      top: 7%;
-      right: 10%;
-      width: 150px;
-      height: 150px;
+      top: 8%;
+      right: 16%;
+      width: 120px;
+      height: 120px;
+      background: #fff7d6;
       border-radius: 50%;
-      background:
-        radial-gradient(circle,
-          #fff9dc 0%,
-          #ffe4a8 65%,
-          #ffc878 100%);
       box-shadow:
-        0 0 60px rgba(255, 234, 188, 0.95),
-        0 0 140px rgba(255, 186, 120, 0.5);
-      animation: moonFloat 6s ease-in-out infinite;
+        0 0 40px rgba(255,247,214,0.8),
+        0 0 90px rgba(255,207,159,0.55);
+      animation: floatMoon 6s ease-in-out infinite;
     }
 
-    .stars {
+    .reader {
       position: absolute;
-      inset: 0;
-      background-image:
-        radial-gradient(circle,
-          rgba(255, 255, 255, 0.9) 1px,
-          transparent 1px);
-      background-size: 100px 100px;
-      opacity: 0.75;
+      top: 18%;
+      right: 18%;
+      font-size: 54px;
+      z-index: 2;
+      animation: readerFloat 4s ease-in-out infinite;
+      filter: drop-shadow(0 12px 18px rgba(0,0,0,0.22));
+    }
+
+    .stars::before,
+    .stars::after {
+      content: "✦ ✧ ✦ ✧ ✦ ✧ ✦";
+      position: absolute;
+      color: rgba(255,255,255,0.95);
+      font-size: 22px;
+      letter-spacing: 22px;
+      animation: twinkle 2.8s ease-in-out infinite alternate;
+    }
+
+    .stars::before {
+      top: 14%;
+      left: 10%;
+    }
+
+    .stars::after {
+      top: 34%;
+      right: 8%;
+      font-size: 16px;
+      animation-delay: 1s;
     }
 
     .cloud {
       position: absolute;
-      width: 280px;
-      height: 80px;
+      width: 180px;
+      height: 54px;
+      background: rgba(255,255,255,0.45);
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.08);
-      filter: blur(2px);
+      filter: blur(1px);
     }
 
     .cloud::before,
     .cloud::after {
       content: "";
       position: absolute;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255,255,255,0.45);
       border-radius: 50%;
     }
 
     .cloud::before {
-      width: 120px;
-      height: 120px;
-      top: -60px;
-      left: 30px;
+      width: 76px;
+      height: 76px;
+      left: 24px;
+      top: -36px;
     }
 
     .cloud::after {
-      width: 150px;
-      height: 150px;
-      top: -80px;
-      right: 25px;
+      width: 96px;
+      height: 96px;
+      right: 22px;
+      top: -50px;
     }
 
-    .cloud1 {
-      left: -320px;
+    .cloud-one {
+      bottom: 18%;
+      left: -220px;
+      animation: cloudMove 22s linear infinite;
+    }
+
+    .cloud-two {
       top: 22%;
-      animation: cloudMove 36s linear infinite;
+      left: -260px;
+      transform: scale(0.75);
+      animation: cloudMove 30s linear infinite;
+      animation-delay: 5s;
     }
 
-    .cloud2 {
-      left: -380px;
-      bottom: 16%;
-      transform: scale(0.8);
-      animation: cloudMove 46s linear infinite;
-      animation-delay: 6s;
-    }
+    /* WELCOME CARD */
 
-    .intro-content {
+    .welcome-card {
+      max-width: 540px;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(12px);
+      border-radius: 34px;
+      padding: 44px 32px;
+      text-align: center;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.18);
       position: relative;
-      z-index: 5;
-      padding: 20px;
-      max-width: 1100px;
+      z-index: 2;
     }
 
-    .intro-title {
-      font-size: clamp(64px, 10vw, 150px);
-      line-height: 0.9;
+    .welcome-small {
+      color: #ef6b2e;
       font-weight: bold;
-      letter-spacing: 2px;
-      color: #ffe7af;
-      text-shadow:
-        0 0 18px rgba(255, 231, 175, 0.9),
-        0 0 60px rgba(239, 107, 46, 0.3);
-      animation: introAppear 1.8s ease both;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 14px;
+      margin-bottom: 14px;
     }
 
-    .letter-g {
-      position: relative;
-      display: inline-block;
+    .welcome-card h2 {
+      font-size: clamp(38px, 7vw, 62px);
+      line-height: 1;
+      margin: 0 0 18px;
+      color: #0d2c54;
     }
 
-    /* OMINO */
-
-    .reader {
-      position: absolute;
-      left: 50%;
-      top: 54%;
-      width: 50px;
-      height: 60px;
-      transform: translate(-50%, -50%);
-      animation: readerFloat 4s ease-in-out infinite;
+    .welcome-card p {
+      font-size: 20px;
+      line-height: 1.5;
+      margin: 0 0 28px;
     }
 
-    .reader-head {
-      position: absolute;
-      top: 0;
-      left: 19px;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: #08152d;
+    #enterButton {
+      border: none;
+      background: #ef6b2e;
+      color: white;
+      padding: 18px 30px;
+      border-radius: 999px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 12px 28px rgba(239,107,46,0.28);
+      transition: 0.25s ease;
     }
 
-    .reader-body {
-      position: absolute;
-      top: 16px;
-      left: 17px;
-      width: 18px;
-      height: 28px;
-      border-radius: 14px 14px 8px 8px;
-      background: #08152d;
-    }
-
-    .reader-book {
-      position: absolute;
-      top: 24px;
-      left: 4px;
-      width: 42px;
-      height: 22px;
-      background: #ffe7af;
-      border-radius: 4px;
-      transform: rotate(-8deg);
-      box-shadow: 0 0 12px rgba(255, 231, 175, 0.8);
-    }
-
-    .reader-book::before {
-      content: "";
-      position: absolute;
-      left: 20px;
-      top: 0;
-      width: 2px;
-      height: 22px;
-      background: rgba(8, 21, 45, 0.25);
-    }
-
-    .intro-subtitle {
-      margin-top: 30px;
-      font-size: clamp(22px, 3vw, 36px);
-      font-style: italic;
-      color: #fff1d0;
-      animation: fadeUp 1.5s ease both;
-      animation-delay: 1s;
-    }
-
-    .enter-text {
-      margin-top: 70px;
-      font-size: clamp(20px, 3vw, 34px);
-      color: #ffe7af;
-      animation: pulse 1.8s ease-in-out infinite;
-    }
-
-    .arrow {
-      font-size: 42px;
-      margin-top: 10px;
-      animation: bounce 1.6s ease-in-out infinite;
+    #enterButton:hover {
+      background: #d9551d;
+      transform: translateY(-2px);
     }
 
     /* PAGE */
 
-    .page {
-      background:
-        radial-gradient(circle at top,
-          rgba(255, 255, 255, 0.35),
-          transparent 30%),
-        #f7e8d8;
-      color: #0d2c54;
-      padding: 60px 20px;
+    .hero {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 20px;
     }
 
     .container {
-      max-width: 1150px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
+      width: 100%;
+      max-width: 680px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
     }
 
     .poster img {
       width: 100%;
-      border-radius: 26px;
-      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.18);
+      display: block;
+      border-radius: 28px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.18);
     }
 
     .content {
-      background: rgba(255, 255, 255, 0.88);
-      border-radius: 28px;
-      padding: 36px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(10px);
+      padding: 34px 28px;
+      border-radius: 30px;
+      box-shadow: 0 14px 35px rgba(0,0,0,0.12);
+      text-align: center;
     }
 
-    .tag {
+    .eyebrow {
       display: inline-block;
-      padding: 8px 18px;
-      border-radius: 999px;
-      border: 1px solid rgba(239, 107, 46, 0.4);
+      padding: 8px 16px;
+      background: rgba(239,107,46,0.12);
       color: #ef6b2e;
+      border-radius: 999px;
       font-size: 14px;
       font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
       margin-bottom: 18px;
     }
 
     h1 {
-      font-size: clamp(48px, 7vw, 82px);
-      line-height: 0.92;
+      font-size: clamp(42px, 8vw, 70px);
+      line-height: 0.95;
       margin: 0;
+      color: #0d2c54;
     }
 
     .orange {
@@ -284,143 +275,139 @@
     }
 
     .subtitle {
-      margin-top: 16px;
-      font-size: 30px;
-      font-style: italic;
+      font-size: clamp(24px, 4vw, 34px);
+      margin: 18px 0 24px;
+      color: #ef6b2e;
+      font-weight: bold;
     }
 
-    .date-box {
-      margin: 34px 0;
+    .date-badge {
       background: #0d2c54;
       color: white;
+      padding: 22px;
       border-radius: 24px;
-      padding: 24px;
-      display: flex;
-      align-items: center;
-      gap: 22px;
+      margin: 25px 0;
     }
 
-    .date-number {
-      font-size: 82px;
-      font-weight: bold;
-      color: #ffcf9f;
+    .date-badge span {
+      display: block;
+      font-size: 62px;
       line-height: 1;
+      color: #ffcf9f;
+      font-weight: bold;
+      margin-bottom: 10px;
     }
 
-    .date-text {
-      font-size: 30px;
+    .date-badge div {
+      font-size: 22px;
       line-height: 1.4;
     }
 
     .info {
-      font-size: 26px;
-      line-height: 1.6;
-      margin-bottom: 30px;
+      font-size: 21px;
+      line-height: 1.7;
+      margin: 20px 0;
     }
 
     .features {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-bottom: 24px;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin: 28px 0;
     }
 
     .feature {
-      border: 1px solid rgba(239, 107, 46, 0.35);
+      background: #fff7f0;
+      border: 1px solid rgba(239,107,46,0.22);
+      padding: 18px;
       border-radius: 18px;
-      padding: 20px;
-      text-align: center;
-      background: #fff8f2;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: bold;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.05);
     }
 
-    .description {
-      border: 1px solid rgba(239, 107, 46, 0.25);
-      border-radius: 18px;
-      padding: 20px;
+    .box {
       background: white;
-      font-size: 22px;
+      border-left: 5px solid #ef6b2e;
+      padding: 22px;
+      border-radius: 18px;
+      font-size: 19px;
       line-height: 1.6;
-      margin-bottom: 28px;
+      text-align: left;
+      margin-top: 20px;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 28px;
     }
 
     .button {
       display: block;
-      width: 100%;
-      text-align: center;
-      padding: 18px;
+      padding: 17px 24px;
       border-radius: 999px;
       text-decoration: none;
-      font-size: 24px;
       font-weight: bold;
-      margin-top: 16px;
+      font-size: 18px;
       transition: 0.25s ease;
     }
 
-    .primary {
+    .button.primary {
       background: #ef6b2e;
       color: white;
     }
 
-    .primary:hover {
+    .button.primary:hover {
       background: #d9551d;
     }
 
-    .secondary {
+    .button.secondary {
       background: #0d2c54;
       color: white;
     }
 
-    .secondary:hover {
+    .button.secondary:hover {
       background: #123b70;
     }
 
     footer {
       text-align: center;
-      padding: 26px;
-      font-size: 20px;
+      padding: 28px 20px;
       color: #0d2c54;
-      background: #f7e8d8;
+      font-size: 15px;
     }
 
     /* ANIMATIONS */
 
-    @keyframes introAppear {
-      from {
-        opacity: 0;
-        transform: translateY(30px) scale(0.95);
-        filter: blur(8px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        filter: blur(0);
-      }
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes moonFloat {
-
-      0%,
-      100% {
+    @keyframes floatMoon {
+      0%, 100% {
         transform: translateY(0);
       }
 
       50% {
         transform: translateY(-12px);
+      }
+    }
+
+    @keyframes readerFloat {
+      0%, 100% {
+        transform: translateY(0) rotate(-4deg);
+      }
+
+      50% {
+        transform: translateY(-14px) rotate(3deg);
+      }
+    }
+
+    @keyframes twinkle {
+      from {
+        opacity: 0.35;
+      }
+
+      to {
+        opacity: 1;
       }
     }
 
@@ -430,174 +417,100 @@
       }
 
       to {
-        transform: translateX(calc(100vw + 500px));
+        transform: translateX(calc(100vw + 320px));
       }
     }
 
-    @keyframes pulse {
+    @media (max-width: 768px) {
 
-      0%,
-      100% {
-        opacity: 0.65;
+      .content {
+        padding: 28px 22px;
       }
 
-      50% {
-        opacity: 1;
-      }
-    }
-
-    @keyframes bounce {
-
-      0%,
-      100% {
-        transform: translateY(0);
+      .date-badge span {
+        font-size: 52px;
       }
 
-      50% {
-        transform: translateY(12px);
-      }
-    }
-
-    @keyframes readerFloat {
-
-      0%,
-      100% {
-        transform: translate(-50%, -50%) translateY(0);
-      }
-
-      50% {
-        transform: translate(-50%, -50%) translateY(-6px);
-      }
-    }
-
-    @media (max-width: 900px) {
-
-      .container {
-        grid-template-columns: 1fr;
-      }
-
-      .features {
-        grid-template-columns: 1fr;
-      }
-
-      .date-box {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .date-number {
-        font-size: 64px;
-      }
-
-      .date-text {
-        font-size: 24px;
-      }
-
-      .info {
-        font-size: 22px;
-      }
-
-      .button {
+      .date-badge div {
         font-size: 20px;
       }
 
-      .intro-title {
-        font-size: clamp(54px, 14vw, 92px);
+      .info {
+        font-size: 19px;
       }
 
-      .reader {
-        width: 36px;
-        height: 42px;
+      .welcome-card {
+        padding: 38px 24px;
       }
 
-      .reader-head {
-        width: 10px;
-        height: 10px;
-        left: 13px;
-      }
-
-      .reader-body {
-        width: 14px;
-        height: 20px;
-        left: 11px;
-      }
-
-      .reader-book {
-        width: 28px;
-        height: 14px;
-        left: 2px;
+      .welcome-card p {
+        font-size: 18px;
       }
     }
+
   </style>
 </head>
 
 <body>
 
-  <!-- INTRO -->
+  <!-- WELCOME -->
 
-  <section id="welcomeScreen">
+  <div id="welcomeScreen">
 
-    <div class="stars"></div>
+    <div class="dream-scene">
 
-    <div class="moon"></div>
+      <div class="moon"></div>
 
-    <div class="cloud cloud1"></div>
+      <div class="stars"></div>
 
-    <div class="cloud cloud2"></div>
+      <div class="reader">📖</div>
 
-    <div class="intro-content">
+      <div class="cloud cloud-one"></div>
 
-      <div class="intro-title">
-
-        <span class="letter-g">
-          G
-
-          <span class="reader">
-
-            <span class="reader-head"></span>
-
-            <span class="reader-body"></span>
-
-            <span class="reader-book"></span>
-
-          </span>
-
-        </span>
-
-        IUNTI<br>
-
-        IN ORIENTE
-
-      </div>
-
-      <div class="intro-subtitle">
-        Sta per iniziare un viaggio tra libri, musica e incontri...
-      </div>
-
-      <div class="enter-text">
-        Clicca per entrare
-      </div>
-
-      <div class="arrow">⌄</div>
+      <div class="cloud cloud-two"></div>
 
     </div>
 
-  </section>
+    <div class="welcome-card">
+
+      <div class="welcome-small">
+        Giunti in Oriente presenta
+      </div>
+
+      <h2>
+        Benvenuto al Book Party
+      </h2>
+
+      <p>
+        Lasciati accompagnare in una serata tra libri,
+        musica, incontri e atmosfera d’Oriente.
+      </p>
+
+      <button id="enterButton">
+        Entra nell’evento
+      </button>
+
+    </div>
+
+  </div>
 
   <!-- PAGE -->
 
-  <section class="page">
+  <main class="hero">
 
     <div class="container">
 
       <div class="poster">
-        <img src="manifesto.JPG" alt="Locandina Giunti in Oriente" />
+        <img
+          src="manifesto.JPG"
+          alt="Manifesto evento Giunti in Oriente Book Party a Ischia"
+        />
       </div>
 
       <div class="content">
 
-        <div class="tag">
-          EVENTO SPECIALE A ISCHIA
+        <div class="eyebrow">
+          Evento speciale a Ischia
         </div>
 
         <h1>
@@ -608,75 +521,66 @@
           Una serata tra libri, musica e incontri
         </div>
 
-        <div class="date-box">
+        <div class="date-badge">
 
-          <div class="date-number">
-            14
-          </div>
+          <span>14</span>
 
-          <div class="date-text">
-            <strong>MAGGIO 2026</strong><br>
+          <div>
+            <strong>Maggio 2026</strong><br />
             dalle ore 19:00
           </div>
 
         </div>
 
         <div class="info">
-          <strong>Oriente Hotel Terme</strong><br>
+          <strong>Oriente Hotel Terme</strong><br />
           Via delle Terme 5 · Ischia
         </div>
 
         <div class="features">
-
-          <div class="feature">
-            📚<br><br>
-            Porta un libro
-          </div>
-
-          <div class="feature">
-            🍸<br><br>
-            Aperitivo
-          </div>
-
-          <div class="feature">
-            🎵<br><br>
-            Musica & incontri
-          </div>
-
+          <div class="feature">📚 Porta un libro</div>
+          <div class="feature">🍸 Aperitivo</div>
+          <div class="feature">🎶 Musica & incontri</div>
         </div>
 
-        <div class="description">
+        <div class="box">
           Una serata speciale dedicata ai libri,
           alla condivisione, alla musica e alla beneficenza.
         </div>
 
-        <a
-          class="button primary"
-          href="https://www.google.com/maps/search/?api=1&query=Oriente+Hotel+Terme+Via+delle+Terme+5+Ischia"
-          target="_blank"
-        >
-          📍 APRI LA MAPPA
-        </a>
+        <div class="actions">
 
-        <a
-          class="button secondary"
-          href="https://wa.me/?text=Partecipa%20al%20Book%20Party%20Giunti%20in%20Oriente!%20📚%0Ahttps://bookparty.github.io"
-          target="_blank"
-        >
-          💬 CONDIVIDI SU WHATSAPP
-        </a>
+          <a
+            class="button primary"
+            href="https://www.google.com/maps/search/?api=1&query=Oriente+Hotel+Terme+Via+delle+Terme+5+Ischia"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Apri la mappa
+          </a>
+
+          <a
+            class="button secondary"
+            href="https://wa.me/?text=Partecipa%20al%20Book%20Party%20Giunti%20in%20Oriente%20a%20Ischia!%20📚%0Ahttps://bookparty.github.io"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Condividi su WhatsApp
+          </a>
+
+        </div>
 
       </div>
 
     </div>
 
-  </section>
+  </main>
 
   <footer>
     In collaborazione con Giunti al Punto · Ischia
   </footer>
 
-  <!-- MUSIC -->
+  <!-- AUDIO -->
 
   <audio id="bgMusic"></audio>
 
@@ -689,8 +593,8 @@
     ];
 
     const music = document.getElementById("bgMusic");
-
-    const welcome = document.getElementById("welcomeScreen");
+    const enterButton = document.getElementById("enterButton");
+    const welcomeScreen = document.getElementById("welcomeScreen");
 
     let currentTrack = 0;
 
@@ -727,14 +631,14 @@
           clearInterval(interval);
         }
 
-      }, 180);
+      }, 200);
     }
 
     function playTrack(index) {
 
       music.src = tracks[index];
 
-      music.play().catch(() => { });
+      music.play();
 
       fadeIn(music);
     }
@@ -754,21 +658,21 @@
 
     });
 
-    welcome.addEventListener("click", () => {
+    enterButton.addEventListener("click", () => {
 
-      welcome.style.opacity = "0";
+      welcomeScreen.style.opacity = "0";
 
-      welcome.style.pointerEvents = "none";
+      welcomeScreen.style.pointerEvents = "none";
 
       setTimeout(() => {
 
-        welcome.style.display = "none";
+        welcomeScreen.style.display = "none";
 
-      }, 900);
+      }, 700);
 
       playTrack(currentTrack);
 
-    }, { once: true });
+    });
 
   </script>
 
