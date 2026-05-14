@@ -7,38 +7,36 @@
   <title>Recensioni - Giunti in Oriente</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
       font-family: Georgia, "Times New Roman", serif;
       background:
-        radial-gradient(circle at top left, rgba(239,107,46,0.22), transparent 32%),
+        radial-gradient(circle at top, rgba(239,107,46,0.22), transparent 30%),
         linear-gradient(180deg, #fff1e6 0%, #f7d4c1 100%);
       color: #0d2c54;
       min-height: 100vh;
     }
 
-    .hero {
+    .page {
       min-height: 100vh;
-      padding: 50px 20px;
+      padding: 45px 18px;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
     }
 
     .container {
       width: 100%;
-      max-width: 760px;
+      max-width: 860px;
     }
 
     .card {
       background: rgba(255,255,255,0.86);
       backdrop-filter: blur(12px);
       border-radius: 34px;
-      padding: 38px 28px;
+      padding: 38px 26px;
       box-shadow: 0 18px 45px rgba(0,0,0,0.14);
       text-align: center;
     }
@@ -51,16 +49,15 @@
       color: #ef6b2e;
       font-weight: bold;
       font-size: 14px;
-      letter-spacing: 0.5px;
       text-transform: uppercase;
-      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+      margin-bottom: 18px;
     }
 
     h1 {
-      font-size: clamp(42px, 8vw, 76px);
+      font-size: clamp(42px, 8vw, 72px);
       line-height: 0.95;
       margin: 0;
-      color: #0d2c54;
     }
 
     .orange {
@@ -68,10 +65,10 @@
     }
 
     .subtitle {
-      margin: 22px 0 30px;
-      font-size: 23px;
+      font-size: 21px;
       line-height: 1.5;
-      color: #0d2c54;
+      margin: 24px auto 30px;
+      max-width: 680px;
     }
 
     .memory-grid {
@@ -86,132 +83,57 @@
       border: 1px solid rgba(239,107,46,0.22);
       border-radius: 20px;
       padding: 18px;
-      font-size: 19px;
-      font-weight: bold;
-    }
-
-    .review-box {
-      background: white;
-      border-radius: 26px;
-      padding: 28px 22px;
-      margin-top: 34px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-      text-align: center;
-    }
-
-    .review-box h2 {
-      margin: 0 0 18px;
-      font-size: 30px;
-      color: #0d2c54;
-    }
-
-    .stars {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin: 18px 0 24px;
-      font-size: 42px;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .star {
-      color: #d7c2ad;
-      transition: 0.2s ease;
-    }
-
-    .star.active,
-    .star:hover {
-      color: #ef6b2e;
-      transform: scale(1.12);
-    }
-
-    textarea {
-      width: 100%;
-      min-height: 140px;
-      border: 1px solid rgba(13,44,84,0.18);
-      border-radius: 20px;
-      padding: 18px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 17px;
-      resize: vertical;
-      outline: none;
-      color: #0d2c54;
-      background: #fffaf6;
-    }
-
-    textarea:focus {
-      border-color: #ef6b2e;
-      box-shadow: 0 0 0 3px rgba(239,107,46,0.12);
-    }
-
-    .submit-btn {
-      margin-top: 20px;
-      width: 100%;
-      border: none;
-      background: #ef6b2e;
-      color: white;
-      padding: 17px 24px;
-      border-radius: 999px;
       font-size: 18px;
       font-weight: bold;
-      cursor: pointer;
+    }
+
+    .form-box {
+      margin-top: 34px;
+      background: white;
+      border-radius: 26px;
+      padding: 16px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.10);
+      overflow: hidden;
+    }
+
+    iframe {
+      width: 100%;
+      min-height: 860px;
+      border: none;
+      border-radius: 18px;
+      background: white;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 16px 26px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
       transition: 0.25s ease;
     }
 
-    .submit-btn:hover {
+    .primary {
+      background: #ef6b2e;
+      color: white;
+    }
+
+    .primary:hover {
       background: #d9551d;
       transform: translateY(-2px);
     }
 
-    .reviews-list {
-      margin-top: 34px;
-      text-align: left;
+    .secondary {
+      background: #0d2c54;
+      color: white;
+      margin-left: 8px;
     }
 
-    .reviews-list h2 {
-      text-align: center;
-      font-size: 30px;
-      margin-bottom: 20px;
-    }
-
-    .single-review {
-      background: rgba(255,255,255,0.9);
-      border-left: 5px solid #ef6b2e;
-      border-radius: 18px;
-      padding: 18px;
-      margin-bottom: 14px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-    }
-
-    .single-review .rating {
-      color: #ef6b2e;
-      font-size: 22px;
-      margin-bottom: 8px;
-    }
-
-    .single-review p {
-      margin: 0;
-      font-size: 17px;
-      line-height: 1.5;
-    }
-
-    .empty {
-      text-align: center;
-      font-size: 17px;
-      opacity: 0.75;
-    }
-
-    .back-link {
-      display: inline-block;
-      margin-top: 28px;
-      color: #0d2c54;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    .back-link:hover {
-      color: #ef6b2e;
+    .secondary:hover {
+      background: #123b70;
+      transform: translateY(-2px);
     }
 
     footer {
@@ -230,15 +152,26 @@
         padding: 46px 42px;
       }
     }
+
+    @media (max-width: 600px) {
+      .button {
+        display: block;
+        margin-left: 0;
+      }
+
+      iframe {
+        min-height: 920px;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-  <main class="hero">
+  <main class="page">
     <div class="container">
-
       <div class="card">
+
         <div class="tag">Grazie per esserci stati</div>
 
         <h1>
@@ -247,7 +180,7 @@
 
         <div class="subtitle">
           Le storie più belle sono quelle che continuano anche dopo l’ultima pagina.
-          Raccontaci com’è stata la tua esperienza al Book Party.
+          Lascia una recensione o un ricordo della serata.
         </div>
 
         <div class="memory-grid">
@@ -256,135 +189,33 @@
           <div class="memory">✨ Incontri e ricordi</div>
         </div>
 
-        <div class="review-box">
-          <h2>Lascia una recensione</h2>
-
-          <div class="stars" id="stars">
-            <span class="star" data-value="1">★</span>
-            <span class="star" data-value="2">★</span>
-            <span class="star" data-value="3">★</span>
-            <span class="star" data-value="4">★</span>
-            <span class="star" data-value="5">★</span>
-          </div>
-
-          <textarea
-            id="comment"
-            placeholder="Scrivi un pensiero, un ricordo o un’emozione sulla serata..."
-          ></textarea>
-
-          <button class="submit-btn" id="submitReview">
-            Invia recensione
-          </button>
+        <div class="form-box">
+          <iframe
+            src="https://forms.gle/QpKACqSvJoy3Tyrr9">
+            Caricamento…
+          </iframe>
         </div>
 
-        <div class="reviews-list">
-          <h2>Recensioni ricevute</h2>
-          <div id="reviewsContainer"></div>
-        </div>
-
-        <a class="back-link" href="index.html">
-          ← Torna alla pagina evento
+        <a
+          class="button primary"
+          href="https://forms.gle/QpKACqSvJoy3Tyrr9"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Apri il modulo
         </a>
-      </div>
 
+        <a class="button secondary" href="index.html">
+          Torna alla home
+        </a>
+
+      </div>
     </div>
   </main>
 
   <footer>
     Arrivederci alla prossima edizione · Giunti in Oriente
   </footer>
-
-  <script>
-    const stars = document.querySelectorAll(".star");
-    const comment = document.getElementById("comment");
-    const submitReview = document.getElementById("submitReview");
-    const reviewsContainer = document.getElementById("reviewsContainer");
-
-    let selectedRating = 0;
-
-    function updateStars(rating) {
-      stars.forEach((star) => {
-        const value = Number(star.dataset.value);
-        star.classList.toggle("active", value <= rating);
-      });
-    }
-
-    stars.forEach((star) => {
-      star.addEventListener("click", () => {
-        selectedRating = Number(star.dataset.value);
-        updateStars(selectedRating);
-      });
-    });
-
-    function getReviews() {
-      return JSON.parse(localStorage.getItem("giuntiReviews")) || [];
-    }
-
-    function saveReviews(reviews) {
-      localStorage.setItem("giuntiReviews", JSON.stringify(reviews));
-    }
-
-    function renderReviews() {
-      const reviews = getReviews();
-
-      reviewsContainer.innerHTML = "";
-
-      if (reviews.length === 0) {
-        reviewsContainer.innerHTML = `
-          <p class="empty">Ancora nessuna recensione. Sii il primo a lasciare un ricordo.</p>
-        `;
-        return;
-      }
-
-      reviews
-        .slice()
-        .reverse()
-        .forEach((review) => {
-          const div = document.createElement("div");
-          div.className = "single-review";
-
-          div.innerHTML = `
-            <div class="rating">${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}</div>
-            <p>${review.text}</p>
-          `;
-
-          reviewsContainer.appendChild(div);
-        });
-    }
-
-    submitReview.addEventListener("click", () => {
-      const text = comment.value.trim();
-
-      if (selectedRating === 0) {
-        alert("Seleziona un punteggio da 1 a 5 stelle.");
-        return;
-      }
-
-      if (text.length < 3) {
-        alert("Scrivi almeno un piccolo commento.");
-        return;
-      }
-
-      const reviews = getReviews();
-
-      reviews.push({
-        rating: selectedRating,
-        text: text,
-        date: new Date().toISOString()
-      });
-
-      saveReviews(reviews);
-
-      selectedRating = 0;
-      comment.value = "";
-      updateStars(0);
-      renderReviews();
-
-      alert("Grazie per la tua recensione!");
-    });
-
-    renderReviews();
-  </script>
 
 </body>
 </html>
