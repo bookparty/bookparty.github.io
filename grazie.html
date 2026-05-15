@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Grazie - Giunti in Oriente</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Georgia, "Times New Roman", serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+
+      background:
+        radial-gradient(circle at top left,
+          rgba(239,107,46,0.20),
+          transparent 30%),
+        linear-gradient(180deg,
+          #fdf5ee 0%,
+          #f4d9c5 100%);
+    }
+
+    /* BACKGROUND */
+
+    .background {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(255,255,255,0.25),
+        rgba(255,255,255,0.25)),
+        url('manifesto.JPG') center center / cover no-repeat;
+      filter: blur(12px) brightness(0.7);
+      transform: scale(1.08);
+    }
+
+    /* MODAL */
+
+    .thanks-box {
+      position: relative;
+      z-index: 5;
+
+      width: min(92%, 760px);
+
+      background: rgba(255,255,255,0.90);
+
+      backdrop-filter: blur(18px);
+
+      border-radius: 34px;
+
+      padding: 55px 40px;
+
+      text-align: center;
+
+      box-shadow:
+        0 25px 70px rgba(0,0,0,0.18),
+        0 0 0 1px rgba(255,255,255,0.4);
+
+      animation: fadeUp 1s ease;
+    }
+
+    .logo-circle {
+      width: 110px;
+      height: 110px;
+      margin: auto;
+
+      border-radius: 50%;
+
+      border: 3px solid #ef6b2e;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 54px;
+
+      color: #0d2c54;
+
+      background: rgba(239,107,46,0.08);
+
+      box-shadow:
+        0 0 35px rgba(239,107,46,0.18);
+    }
+
+    h1 {
+      margin: 28px 0 0;
+
+      font-size: clamp(62px, 9vw, 110px);
+
+      line-height: 0.9;
+
+      color: #0d2c54;
+    }
+
+    .orange {
+      color: #ef6b2e;
+    }
+
+    .divider {
+      width: 140px;
+      height: 2px;
+
+      background:
+        linear-gradient(to right,
+          transparent,
+          rgba(239,107,46,0.5),
+          transparent);
+
+      margin: 30px auto;
+    }
+
+    .message {
+      font-size: clamp(20px, 3vw, 31px);
+
+      line-height: 1.7;
+
+      color: #0d2c54;
+
+      max-width: 580px;
+
+      margin: auto;
+    }
+
+    .heart {
+      margin-top: 24px;
+
+      font-size: 42px;
+
+      color: #ef6b2e;
+
+      animation: pulse 1.8s infinite;
+    }
+
+    .button {
+      display: inline-block;
+
+      margin-top: 40px;
+
+      padding: 20px 34px;
+
+      border-radius: 999px;
+
+      text-decoration: none;
+
+      font-size: clamp(18px, 2vw, 26px);
+
+      font-weight: bold;
+
+      color: white;
+
+      background: linear-gradient(
+        135deg,
+        #ef6b2e,
+        #ff8d4d
+      );
+
+      box-shadow:
+        0 16px 35px rgba(239,107,46,0.28);
+
+      transition: 0.25s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-3px) scale(1.02);
+
+      box-shadow:
+        0 20px 45px rgba(239,107,46,0.38);
+    }
+
+    .button span {
+      margin-right: 10px;
+    }
+
+    .small {
+      margin-top: 24px;
+
+      font-size: 15px;
+
+      color: rgba(13,44,84,0.7);
+    }
+
+    /* ANIMATIONS */
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes pulse {
+
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(1.12);
+        opacity: 0.75;
+      }
+    }
+
+    @media (max-width: 700px) {
+
+      .thanks-box {
+        padding: 42px 24px;
+      }
+
+      .logo-circle {
+        width: 90px;
+        height: 90px;
+        font-size: 42px;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="background"></div>
+
+  <div class="thanks-box">
+
+    <div class="logo-circle">
+      ⛩️
+    </div>
+
+    <h1>
+      Grazie<br>
+      <span class="orange">di cuore!</span>
+    </h1>
+
+    <div class="divider"></div>
+
+    <div class="message">
+
+      La tua recensione è stata inviata con successo.<br><br>
+
+      Le tue parole aiutano a rendere
+      ogni incontro sempre più speciale.<br><br>
+
+      Arrivederci alla prossima edizione di
+      <strong>Giunti in Oriente</strong>.
+
+    </div>
+
+    <div class="heart">
+      ♥
+    </div>
+
+    <a
+      class="button"
+      href="recensioni.html"
+    >
+      <span>📚</span>
+      Torna alla pagina delle recensioni
+    </a>
+
+    <div class="small">
+      Giunti in Oriente · Book Party
+    </div>
+
+  </div>
+
+</body>
+
+</html>
