@@ -5,18 +5,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Giunti in Oriente - Evento concluso</title>
+  <title>Grazie - Giunti in Oriente</title>
 
   <meta
     name="description"
-    content="Giunti in Oriente - Il Book Party si è concluso, ma le storie continuano."
+    content="Grazie per aver partecipato a Giunti in Oriente - Book Party a Ischia. Lascia una recensione e raccontaci la tua esperienza."
   />
 
-  <meta property="og:title" content="Giunti in Oriente - Evento concluso" />
+  <!-- OPEN GRAPH -->
+
+  <meta property="og:title" content="Grazie - Giunti in Oriente" />
+
   <meta
     property="og:description"
-    content="Grazie per aver partecipato al Book Party. Entra nella pagina di ringraziamento e lascia il tuo ricordo."
+    content="L'evento Giunti in Oriente si è concluso. Entra nella pagina di ringraziamento e lascia il tuo ricordo."
   />
+
   <meta property="og:image" content="https://bookparty.github.io/manifesto.JPG" />
   <meta property="og:url" content="https://bookparty.github.io" />
   <meta property="og:type" content="website" />
@@ -27,22 +31,33 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      min-height: 100vh;
       font-family: Georgia, "Times New Roman", serif;
-      color: #0d2c54;
       background:
-        radial-gradient(circle at top, rgba(239,107,46,0.28), transparent 34%),
+        radial-gradient(circle at top, rgba(239,107,46,0.22), transparent 30%),
         linear-gradient(180deg, #fff1e6 0%, #f7d4c1 100%);
+      color: #0d2c54;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body.locked {
       overflow: hidden;
     }
 
-    .scene {
+    /* SFONDO ANIMATO */
+
+    .dream-scene {
       position: fixed;
       inset: 0;
       overflow: hidden;
       pointer-events: none;
+      z-index: 0;
     }
 
     .stars::before,
@@ -61,19 +76,20 @@
     }
 
     .stars::after {
-      top: 34%;
-      right: 8%;
+      top: 32%;
+      right: 7%;
       font-size: 16px;
       animation-delay: 1s;
     }
 
     .reader {
       position: absolute;
-      top: 12%;
-      right: 14%;
+      top: 10%;
+      right: 12%;
       font-size: 58px;
+      z-index: 1;
       animation: readerFloat 4s ease-in-out infinite;
-      filter: drop-shadow(0 12px 18px rgba(0,0,0,0.22));
+      filter: drop-shadow(0 12px 18px rgba(0,0,0,0.20));
     }
 
     .cloud {
@@ -108,7 +124,7 @@
     }
 
     .cloud-one {
-      bottom: 18%;
+      bottom: 16%;
       left: -220px;
       animation: cloudMove 24s linear infinite;
     }
@@ -121,29 +137,43 @@
       animation-delay: 5s;
     }
 
-    .page {
-      min-height: 100vh;
+    /* FINESTRA INIZIALE */
+
+    #introOverlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       padding: 24px;
-      position: relative;
-      z-index: 2;
+      background:
+        radial-gradient(circle at top, rgba(239,107,46,0.30), transparent 35%),
+        linear-gradient(180deg, #fff1e6 0%, #f7d4c1 100%);
+      transition: opacity 0.8s ease, visibility 0.8s ease;
     }
 
-    .closing-window {
+    #introOverlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .intro-card {
       width: 100%;
       max-width: 620px;
-      background: rgba(255,255,255,0.88);
+      background: rgba(255,255,255,0.90);
       backdrop-filter: blur(14px);
       border-radius: 36px;
       padding: 44px 32px;
       text-align: center;
       box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+      position: relative;
+      z-index: 2;
       animation: windowIn 1s ease both;
     }
 
-    .label {
+    .intro-label {
       display: inline-block;
       padding: 8px 16px;
       border-radius: 999px;
@@ -156,18 +186,14 @@
       margin-bottom: 18px;
     }
 
-    h1 {
+    .intro-card h1 {
       font-size: clamp(42px, 8vw, 70px);
       line-height: 0.95;
       margin: 0 0 20px;
       color: #0d2c54;
     }
 
-    .orange {
-      color: #ef6b2e;
-    }
-
-    .phrase {
+    .intro-phrase {
       font-size: clamp(21px, 4vw, 29px);
       line-height: 1.45;
       margin: 20px 0;
@@ -189,7 +215,7 @@
       color: #ffcf9f;
     }
 
-    .button {
+    #enterButton {
       display: inline-block;
       margin-top: 30px;
       border: none;
@@ -203,9 +229,10 @@
       text-decoration: none;
       box-shadow: 0 14px 30px rgba(239,107,46,0.30);
       transition: 0.25s ease;
+      font-family: Georgia, "Times New Roman", serif;
     }
 
-    .button:hover {
+    #enterButton:hover {
       background: #d9551d;
       transform: translateY(-2px);
     }
@@ -216,18 +243,195 @@
       opacity: 0.75;
     }
 
-    .loading {
-      display: none;
-      margin-top: 18px;
-      font-size: 16px;
+    /* PAGINA RINGRAZIAMENTO */
+
+    #thanksPage {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    #thanksPage.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 34px 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 760px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .content {
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(12px);
+      padding: 44px 30px;
+      border-radius: 36px;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.14);
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 16px;
+      background: rgba(239,107,46,0.12);
+      color: #ef6b2e;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: clamp(44px, 8vw, 78px);
+      line-height: 0.95;
+      margin: 0;
+      color: #0d2c54;
+    }
+
+    .orange {
+      color: #ef6b2e;
+    }
+
+    .subtitle {
+      font-size: clamp(24px, 4vw, 34px);
+      margin: 20px 0 24px;
       color: #ef6b2e;
       font-weight: bold;
     }
 
-    .loading.show {
-      display: block;
-      animation: pulse 1s ease-in-out infinite;
+    .thanks-box {
+      background: #0d2c54;
+      color: white;
+      padding: 30px 24px;
+      border-radius: 28px;
+      margin: 28px 0;
+      box-shadow: 0 14px 28px rgba(13,44,84,0.18);
     }
+
+    .thanks-box .big {
+      display: block;
+      font-size: clamp(44px, 8vw, 72px);
+      line-height: 1;
+      color: #ffcf9f;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+
+    .thanks-box div {
+      font-size: 22px;
+      line-height: 1.5;
+    }
+
+    .message {
+      font-size: 21px;
+      line-height: 1.7;
+      margin: 22px 0;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin: 28px 0;
+    }
+
+    .feature {
+      background: #fff7f0;
+      border: 1px solid rgba(239,107,46,0.22);
+      padding: 18px;
+      border-radius: 18px;
+      font-size: 18px;
+      font-weight: bold;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+    }
+
+    .box {
+      background: white;
+      border-left: 5px solid #ef6b2e;
+      padding: 22px;
+      border-radius: 18px;
+      font-size: 19px;
+      line-height: 1.6;
+      text-align: left;
+      margin-top: 20px;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: block;
+      padding: 19px 26px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 19px;
+      transition: 0.25s ease;
+      border: none;
+      cursor: pointer;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .button.primary {
+      background: #ef6b2e;
+      color: white;
+      box-shadow: 0 12px 28px rgba(239,107,46,0.28);
+    }
+
+    .button.primary:hover {
+      background: #d9551d;
+      transform: translateY(-2px);
+    }
+
+    .button.secondary {
+      background: #0d2c54;
+      color: white;
+    }
+
+    .button.secondary:hover {
+      background: #123b70;
+      transform: translateY(-2px);
+    }
+
+    .poster img {
+      width: 100%;
+      display: block;
+      border-radius: 30px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 20px;
+      color: #0d2c54;
+      font-size: 15px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ANIMAZIONI */
 
     @keyframes windowIn {
       from {
@@ -271,60 +475,70 @@
       }
     }
 
-    @keyframes pulse {
-      0%, 100% {
-        opacity: 0.45;
-      }
-
-      50% {
-        opacity: 1;
-      }
-    }
-
     @media (max-width: 768px) {
-      .closing-window {
+      .intro-card {
         padding: 38px 24px;
       }
 
+      .hero {
+        align-items: flex-start;
+        padding: 24px 16px;
+      }
+
+      .content {
+        padding: 34px 22px;
+      }
+
+      .message {
+        font-size: 19px;
+      }
+
+      .thanks-box div {
+        font-size: 20px;
+      }
+
       .reader {
-        top: 6%;
+        top: 5%;
         right: 8%;
         font-size: 44px;
         opacity: 0.65;
-      }
-
-      .hype {
-        font-size: 18px;
-      }
-
-      .button {
-        width: 100%;
-        font-size: 18px;
-        padding: 18px 22px;
       }
 
       .stars::before,
       .stars::after {
         letter-spacing: 14px;
       }
+
+      .button,
+      #enterButton {
+        width: 100%;
+        font-size: 18px;
+        padding: 18px 22px;
+      }
+
+      .hype {
+        font-size: 18px;
+      }
     }
   </style>
 </head>
 
-<body>
+<body class="locked">
 
-  <div class="scene">
+  <div class="dream-scene">
     <div class="stars"></div>
     <div class="reader">📖</div>
     <div class="cloud cloud-one"></div>
     <div class="cloud cloud-two"></div>
   </div>
 
-  <main class="page">
+  <!-- FINESTRA INIZIALE -->
 
-    <section class="closing-window">
+  <section id="introOverlay">
 
-      <div class="label">
+    <div class="intro-card">
+
+      <div class="intro-label">
         Evento concluso
       </div>
 
@@ -332,7 +546,7 @@
         Le storie non finiscono <span class="orange">qui</span>
       </h1>
 
-      <div class="phrase">
+      <div class="intro-phrase">
         Ogni libro portato, ogni sorriso condiviso e ogni incontro nato
         resteranno tra le pagine più belle di questa serata.
       </div>
@@ -343,21 +557,108 @@
         il prossimo capitolo è già nell’aria.
       </div>
 
-      <button class="button" id="enterButton">
+      <button id="enterButton" type="button">
         Entra nel ricordo della serata
       </button>
 
       <div class="small-text">
-        La musica partirà e sarai accompagnato alla pagina di ringraziamento.
+        La musica partirà e ti accompagnerà nella pagina di ringraziamento.
       </div>
 
-      <div class="loading" id="loadingText">
-        Apertura della pagina di ringraziamento...
+    </div>
+
+  </section>
+
+  <!-- PAGINA DI RINGRAZIAMENTO NELLA STESSA PAGINA -->
+
+  <main id="thanksPage">
+
+    <section class="hero">
+
+      <div class="container">
+
+        <div class="content">
+
+          <div class="eyebrow">
+            Grazie di cuore
+          </div>
+
+          <h2>
+            Grazie per aver partecipato
+          </h2>
+
+          <div class="subtitle">
+            Giunti in <span class="orange">Oriente</span>
+          </div>
+
+          <div class="thanks-box">
+            <span class="big">📚</span>
+            <div>
+              Una serata è finita,<br />
+              ma il ricordo resta aperto.
+            </div>
+          </div>
+
+          <div class="message">
+            Grazie per aver portato con te un libro, una storia,
+            un sorriso e un po’ del tuo tempo.
+            <br /><br />
+            Il Book Party è nato per condividere pagine,
+            incontri e piccoli momenti belli:
+            la tua presenza lo ha reso davvero speciale.
+          </div>
+
+          <div class="features">
+            <div class="feature">📖 Una storia condivisa</div>
+            <div class="feature">🍸 Un brindisi insieme</div>
+            <div class="feature">🎶 Un ricordo da conservare</div>
+          </div>
+
+          <div class="box">
+            Prima di chiudere questo capitolo, ci piacerebbe sapere com’è stata
+            la tua esperienza. La tua recensione ci aiuterà a far crescere il
+            prossimo Book Party e a renderlo ancora più bello.
+          </div>
+
+          <div class="actions">
+
+            <a
+              class="button primary"
+              href="recensioni.html"
+            >
+              Lascia la tua recensione
+            </a>
+
+            <button
+              class="button secondary"
+              id="musicButton"
+              type="button"
+            >
+              Metti in pausa la musica
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="poster">
+          <img
+            src="manifesto.JPG"
+            alt="Manifesto evento Giunti in Oriente Book Party a Ischia"
+          />
+        </div>
+
       </div>
 
     </section>
 
+    <footer>
+      In collaborazione con Giunti al Punto · Ischia
+    </footer>
+
   </main>
+
+  <!-- MUSICA -->
 
   <audio id="bgMusic" preload="auto"></audio>
 
@@ -370,9 +671,12 @@
 
     const music = document.getElementById("bgMusic");
     const enterButton = document.getElementById("enterButton");
-    const loadingText = document.getElementById("loadingText");
+    const musicButton = document.getElementById("musicButton");
+    const introOverlay = document.getElementById("introOverlay");
+    const thanksPage = document.getElementById("thanksPage");
 
     let currentTrack = 0;
+    let isPlaying = false;
 
     music.volume = 0.18;
 
@@ -395,7 +699,7 @@
         } else {
           clearInterval(interval);
         }
-      }, 120);
+      }, 130);
     }
 
     function playTrack(index) {
@@ -403,25 +707,62 @@
 
       music.play()
         .then(() => {
+          isPlaying = true;
+          musicButton.innerText = "Metti in pausa la musica";
           fadeIn(music);
         })
         .catch(() => {
-          console.log("La musica partirà solo dopo interazione dell'utente.");
+          isPlaying = false;
+          musicButton.innerText = "Avvia la musica";
         });
     }
 
     shuffle(tracks);
 
+    music.addEventListener("ended", () => {
+      currentTrack++;
+
+      if (currentTrack >= tracks.length) {
+        currentTrack = 0;
+        shuffle(tracks);
+      }
+
+      playTrack(currentTrack);
+    });
+
     enterButton.addEventListener("click", () => {
       enterButton.disabled = true;
       enterButton.innerText = "La magia sta iniziando...";
-      loadingText.classList.add("show");
 
       playTrack(currentTrack);
 
       setTimeout(() => {
-        window.location.href = "grazie.html";
-      }, 3500);
+        introOverlay.classList.add("hidden");
+        document.body.classList.remove("locked");
+        thanksPage.classList.add("visible");
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      }, 900);
+    });
+
+    musicButton.addEventListener("click", () => {
+      if (!isPlaying) {
+        music.play()
+          .then(() => {
+            isPlaying = true;
+            musicButton.innerText = "Metti in pausa la musica";
+          })
+          .catch(() => {
+            playTrack(currentTrack);
+          });
+      } else {
+        music.pause();
+        isPlaying = false;
+        musicButton.innerText = "Avvia la musica";
+      }
     });
   </script>
 
