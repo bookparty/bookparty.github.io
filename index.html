@@ -5,22 +5,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Grazie per aver partecipato - Giunti in Oriente</title>
+  <title>Giunti in Oriente - Evento concluso</title>
 
   <meta
     name="description"
-    content="Grazie per aver partecipato a Giunti in Oriente - Book Party a Ischia. Lascia una recensione e raccontaci la tua esperienza."
+    content="Giunti in Oriente - Il Book Party si è concluso, ma le storie continuano."
   />
 
-  <!-- OPEN GRAPH -->
-
-  <meta property="og:title" content="Grazie per aver partecipato - Giunti in Oriente" />
-
+  <meta property="og:title" content="Giunti in Oriente - Evento concluso" />
   <meta
     property="og:description"
-    content="L'evento Giunti in Oriente si è concluso. Lascia una recensione e aiutaci a rendere ancora più speciale il prossimo Book Party."
+    content="Grazie per aver partecipato al Book Party. Entra nella pagina di ringraziamento e lascia il tuo ricordo."
   />
-
   <meta property="og:image" content="https://bookparty.github.io/manifesto.JPG" />
   <meta property="og:url" content="https://bookparty.github.io" />
   <meta property="og:type" content="website" />
@@ -33,32 +29,20 @@
 
     body {
       margin: 0;
+      min-height: 100vh;
       font-family: Georgia, "Times New Roman", serif;
-      background:
-        radial-gradient(circle at top, rgba(239,107,46,0.22), transparent 30%),
-        linear-gradient(180deg, #fff1e6 0%, #f7d4c1 100%);
       color: #0d2c54;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    .hero {
-      width: 100%;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 34px 20px;
-      position: relative;
+      background:
+        radial-gradient(circle at top, rgba(239,107,46,0.28), transparent 34%),
+        linear-gradient(180deg, #fff1e6 0%, #f7d4c1 100%);
       overflow: hidden;
     }
 
-    .dream-scene {
+    .scene {
       position: fixed;
       inset: 0;
       overflow: hidden;
       pointer-events: none;
-      z-index: 0;
     }
 
     .stars::before,
@@ -77,8 +61,8 @@
     }
 
     .stars::after {
-      top: 32%;
-      right: 7%;
+      top: 34%;
+      right: 8%;
       font-size: 16px;
       animation-delay: 1s;
     }
@@ -88,9 +72,8 @@
       top: 12%;
       right: 14%;
       font-size: 58px;
-      z-index: 1;
       animation: readerFloat 4s ease-in-out infinite;
-      filter: drop-shadow(0 12px 18px rgba(0,0,0,0.20));
+      filter: drop-shadow(0 12px 18px rgba(0,0,0,0.22));
     }
 
     .cloud {
@@ -125,7 +108,7 @@
     }
 
     .cloud-one {
-      bottom: 16%;
+      bottom: 18%;
       left: -220px;
       animation: cloudMove 24s linear infinite;
     }
@@ -138,49 +121,45 @@
       animation-delay: 5s;
     }
 
-    .container {
-      width: 100%;
-      max-width: 760px;
+    .page {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
       position: relative;
       z-index: 2;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
     }
 
-    .poster img {
+    .closing-window {
       width: 100%;
-      display: block;
-      border-radius: 30px;
-      box-shadow: 0 20px 45px rgba(0,0,0,0.18);
-    }
-
-    .content {
-      background: rgba(255,255,255,0.86);
-      backdrop-filter: blur(12px);
-      padding: 42px 30px;
-      border-radius: 34px;
-      box-shadow: 0 18px 45px rgba(0,0,0,0.14);
+      max-width: 620px;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(14px);
+      border-radius: 36px;
+      padding: 44px 32px;
       text-align: center;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+      animation: windowIn 1s ease both;
     }
 
-    .eyebrow {
+    .label {
       display: inline-block;
       padding: 8px 16px;
-      background: rgba(239,107,46,0.12);
-      color: #ef6b2e;
       border-radius: 999px;
+      background: rgba(239,107,46,0.13);
+      color: #ef6b2e;
       font-size: 14px;
       font-weight: bold;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 20px;
+      letter-spacing: 0.7px;
+      margin-bottom: 18px;
     }
 
     h1 {
-      font-size: clamp(42px, 8vw, 76px);
+      font-size: clamp(42px, 8vw, 70px);
       line-height: 0.95;
-      margin: 0;
+      margin: 0 0 20px;
       color: #0d2c54;
     }
 
@@ -188,115 +167,78 @@
       color: #ef6b2e;
     }
 
-    .subtitle {
-      font-size: clamp(24px, 4vw, 34px);
-      margin: 20px 0 24px;
-      color: #ef6b2e;
-      font-weight: bold;
+    .phrase {
+      font-size: clamp(21px, 4vw, 29px);
+      line-height: 1.45;
+      margin: 20px 0;
+      color: #0d2c54;
     }
 
-    .thanks-box {
+    .hype {
+      margin: 24px auto 0;
       background: #0d2c54;
       color: white;
-      padding: 28px 24px;
-      border-radius: 28px;
-      margin: 28px 0;
-      box-shadow: 0 14px 28px rgba(13,44,84,0.18);
-    }
-
-    .thanks-box .big {
-      display: block;
-      font-size: clamp(42px, 8vw, 72px);
-      line-height: 1;
-      color: #ffcf9f;
-      font-weight: bold;
-      margin-bottom: 14px;
-    }
-
-    .thanks-box div {
-      font-size: 22px;
-      line-height: 1.5;
-    }
-
-    .message {
-      font-size: 21px;
-      line-height: 1.7;
-      margin: 22px 0;
-    }
-
-    .features {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-      margin: 28px 0;
-    }
-
-    .feature {
-      background: #fff7f0;
-      border: 1px solid rgba(239,107,46,0.22);
-      padding: 18px;
-      border-radius: 18px;
-      font-size: 18px;
-      font-weight: bold;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.05);
-    }
-
-    .box {
-      background: white;
-      border-left: 5px solid #ef6b2e;
       padding: 22px;
-      border-radius: 18px;
-      font-size: 19px;
-      line-height: 1.6;
-      text-align: left;
-      margin-top: 20px;
+      border-radius: 24px;
+      font-size: 20px;
+      line-height: 1.5;
+      box-shadow: 0 14px 30px rgba(13,44,84,0.20);
     }
 
-    .actions {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-top: 30px;
+    .hype strong {
+      color: #ffcf9f;
     }
 
     .button {
-      display: block;
-      padding: 19px 26px;
+      display: inline-block;
+      margin-top: 30px;
+      border: none;
+      background: #ef6b2e;
+      color: white;
+      padding: 19px 32px;
       border-radius: 999px;
-      text-decoration: none;
-      font-weight: bold;
       font-size: 19px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 14px 30px rgba(239,107,46,0.30);
       transition: 0.25s ease;
     }
 
-    .button.primary {
-      background: #ef6b2e;
-      color: white;
-      box-shadow: 0 12px 28px rgba(239,107,46,0.28);
-    }
-
-    .button.primary:hover {
+    .button:hover {
       background: #d9551d;
       transform: translateY(-2px);
     }
 
-    .button.secondary {
-      background: #0d2c54;
-      color: white;
-    }
-
-    .button.secondary:hover {
-      background: #123b70;
-      transform: translateY(-2px);
-    }
-
-    footer {
-      text-align: center;
-      padding: 28px 20px;
-      color: #0d2c54;
+    .small-text {
+      margin-top: 18px;
       font-size: 15px;
-      position: relative;
-      z-index: 2;
+      opacity: 0.75;
+    }
+
+    .loading {
+      display: none;
+      margin-top: 18px;
+      font-size: 16px;
+      color: #ef6b2e;
+      font-weight: bold;
+    }
+
+    .loading.show {
+      display: block;
+      animation: pulse 1s ease-in-out infinite;
+    }
+
+    @keyframes windowIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     @keyframes readerFloat {
@@ -329,29 +271,36 @@
       }
     }
 
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.45;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
     @media (max-width: 768px) {
-      .hero {
-        align-items: flex-start;
-        padding: 24px 16px;
-      }
-
-      .content {
-        padding: 32px 22px;
-      }
-
-      .message {
-        font-size: 19px;
-      }
-
-      .thanks-box div {
-        font-size: 20px;
+      .closing-window {
+        padding: 38px 24px;
       }
 
       .reader {
-        top: 5%;
+        top: 6%;
         right: 8%;
         font-size: 44px;
         opacity: 0.65;
+      }
+
+      .hype {
+        font-size: 18px;
+      }
+
+      .button {
+        width: 100%;
+        font-size: 18px;
+        padding: 18px 22px;
       }
 
       .stars::before,
@@ -364,94 +313,117 @@
 
 <body>
 
-  <div class="dream-scene">
+  <div class="scene">
     <div class="stars"></div>
     <div class="reader">📖</div>
     <div class="cloud cloud-one"></div>
     <div class="cloud cloud-two"></div>
   </div>
 
-  <main class="hero">
+  <main class="page">
 
-    <div class="container">
+    <section class="closing-window">
 
-     
-
-      <div class="content">
-
-        <div class="eyebrow">
-          Evento concluso
-        </div>
-
-        <h1>
-          Grazie per aver partecipato
-        </h1>
-
-        <div class="subtitle">
-          Giunti in <span class="orange">Oriente</span>
-        </div>
-
-        <div class="thanks-box">
-          <span class="big">📚</span>
-          <div>
-            Il nostro Book Party si è concluso,<br />
-            ma le storie continuano.
-          </div>
-        </div>
-
-        <div class="message">
-          Grazie per aver condiviso con noi una serata speciale tra libri,
-          incontri, musica e sorrisi.
-          La tua presenza ha reso questo evento ancora più bello.
-        </div>
-
-        <div class="features">
-          <div class="feature">📖 Libri condivisi</div>
-          <div class="feature">🍸 Aperitivo e compagnia</div>
-          <div class="feature">🎶 Musica, incontri e sorrisi</div>
-        </div>
-
-        <div class="box">
-          Ci farebbe piacere sapere com’è stata la tua esperienza.
-          Lascia una recensione: bastano pochi secondi e ci aiuterai
-          a rendere il prossimo Book Party ancora più speciale.
-        </div>
-
-        <div class="actions">
-
-          <a
-            class="button primary"
-            href="recensioni.html"
-          >
-            Lascia una recensione
-          </a>
-
-          <a
-            class="button secondary"
-            href="https://wa.me/?text=Ho%20partecipato%20al%20Book%20Party%20Giunti%20in%20Oriente%20a%20Ischia!%20📚%0Ahttps://bookparty.github.io"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Condividi il ricordo su WhatsApp
-          </a>
-
-        </div>
-         <div class="poster">
-        <img
-          src="manifesto.JPG"
-          alt="Manifesto evento Giunti in Oriente Book Party a Ischia"
-        />
+      <div class="label">
+        Evento concluso
       </div>
 
+      <h1>
+        Le storie non finiscono <span class="orange">qui</span>
+      </h1>
+
+      <div class="phrase">
+        Ogni libro portato, ogni sorriso condiviso e ogni incontro nato
+        resteranno tra le pagine più belle di questa serata.
       </div>
 
-    </div>
+      <div class="hype">
+        <strong>Grazie per esserci stato.</strong><br />
+        Il primo Book Party è solo l’inizio:
+        il prossimo capitolo è già nell’aria.
+      </div>
+
+      <button class="button" id="enterButton">
+        Entra nel ricordo della serata
+      </button>
+
+      <div class="small-text">
+        La musica partirà e sarai accompagnato alla pagina di ringraziamento.
+      </div>
+
+      <div class="loading" id="loadingText">
+        Apertura della pagina di ringraziamento...
+      </div>
+
+    </section>
 
   </main>
 
-  <footer>
-    In collaborazione con Giunti al Punto · Ischia
-  </footer>
+  <audio id="bgMusic" preload="auto"></audio>
+
+  <script>
+    const tracks = [
+      "musica1.mp3",
+      "musica2.mp3",
+      "musica3.mp3"
+    ];
+
+    const music = document.getElementById("bgMusic");
+    const enterButton = document.getElementById("enterButton");
+    const loadingText = document.getElementById("loadingText");
+
+    let currentTrack = 0;
+
+    music.volume = 0.18;
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function fadeIn(audio) {
+      audio.volume = 0;
+
+      let vol = 0;
+
+      const interval = setInterval(() => {
+        if (vol < 0.18) {
+          vol += 0.01;
+          audio.volume = vol;
+        } else {
+          clearInterval(interval);
+        }
+      }, 120);
+    }
+
+    function playTrack(index) {
+      music.src = tracks[index];
+
+      music.play()
+        .then(() => {
+          fadeIn(music);
+        })
+        .catch(() => {
+          console.log("La musica partirà solo dopo interazione dell'utente.");
+        });
+    }
+
+    shuffle(tracks);
+
+    enterButton.addEventListener("click", () => {
+      enterButton.disabled = true;
+      enterButton.innerText = "La magia sta iniziando...";
+      loadingText.classList.add("show");
+
+      playTrack(currentTrack);
+
+      setTimeout(() => {
+        window.location.href = "grazie.html";
+      }, 3500);
+    });
+  </script>
 
 </body>
 
