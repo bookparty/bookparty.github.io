@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Grazie per aver partecipato - Giunti in Oriente</title>
+
+  <meta
+    name="description"
+    content="Grazie per aver partecipato a Giunti in Oriente - Book Party a Ischia. Lascia una recensione e raccontaci la tua esperienza."
+  />
+
+  <!-- OPEN GRAPH -->
+
+  <meta property="og:title" content="Grazie per aver partecipato - Giunti in Oriente" />
+
+  <meta
+    property="og:description"
+    content="L'evento Giunti in Oriente si è concluso. Lascia una recensione e aiutaci a rendere ancora più speciale il prossimo Book Party."
+  />
+
+  <meta property="og:image" content="https://bookparty.github.io/manifesto.JPG" />
+  <meta property="og:url" content="https://bookparty.github.io" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="it_IT" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at top, rgba(239,107,46,0.22), transparent 30%),
+        linear-gradient(180deg, #fff1e6 0%, #f7d4c1 100%);
+      color: #0d2c54;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 34px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dream-scene {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .stars::before,
+    .stars::after {
+      content: "✦ ✧ ✦ ✧ ✦ ✧ ✦";
+      position: absolute;
+      color: rgba(255,255,255,0.95);
+      font-size: 22px;
+      letter-spacing: 22px;
+      animation: twinkle 2.8s ease-in-out infinite alternate;
+    }
+
+    .stars::before {
+      top: 12%;
+      left: 8%;
+    }
+
+    .stars::after {
+      top: 32%;
+      right: 7%;
+      font-size: 16px;
+      animation-delay: 1s;
+    }
+
+    .reader {
+      position: absolute;
+      top: 12%;
+      right: 14%;
+      font-size: 58px;
+      z-index: 1;
+      animation: readerFloat 4s ease-in-out infinite;
+      filter: drop-shadow(0 12px 18px rgba(0,0,0,0.20));
+    }
+
+    .cloud {
+      position: absolute;
+      width: 180px;
+      height: 54px;
+      background: rgba(255,255,255,0.42);
+      border-radius: 999px;
+      filter: blur(1px);
+    }
+
+    .cloud::before,
+    .cloud::after {
+      content: "";
+      position: absolute;
+      background: rgba(255,255,255,0.42);
+      border-radius: 50%;
+    }
+
+    .cloud::before {
+      width: 76px;
+      height: 76px;
+      left: 24px;
+      top: -36px;
+    }
+
+    .cloud::after {
+      width: 96px;
+      height: 96px;
+      right: 22px;
+      top: -50px;
+    }
+
+    .cloud-one {
+      bottom: 16%;
+      left: -220px;
+      animation: cloudMove 24s linear infinite;
+    }
+
+    .cloud-two {
+      top: 22%;
+      left: -260px;
+      transform: scale(0.75);
+      animation: cloudMove 32s linear infinite;
+      animation-delay: 5s;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 760px;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .poster img {
+      width: 100%;
+      display: block;
+      border-radius: 30px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+    }
+
+    .content {
+      background: rgba(255,255,255,0.86);
+      backdrop-filter: blur(12px);
+      padding: 42px 30px;
+      border-radius: 34px;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.14);
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 16px;
+      background: rgba(239,107,46,0.12);
+      color: #ef6b2e;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 8vw, 76px);
+      line-height: 0.95;
+      margin: 0;
+      color: #0d2c54;
+    }
+
+    .orange {
+      color: #ef6b2e;
+    }
+
+    .subtitle {
+      font-size: clamp(24px, 4vw, 34px);
+      margin: 20px 0 24px;
+      color: #ef6b2e;
+      font-weight: bold;
+    }
+
+    .thanks-box {
+      background: #0d2c54;
+      color: white;
+      padding: 28px 24px;
+      border-radius: 28px;
+      margin: 28px 0;
+      box-shadow: 0 14px 28px rgba(13,44,84,0.18);
+    }
+
+    .thanks-box .big {
+      display: block;
+      font-size: clamp(42px, 8vw, 72px);
+      line-height: 1;
+      color: #ffcf9f;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+
+    .thanks-box div {
+      font-size: 22px;
+      line-height: 1.5;
+    }
+
+    .message {
+      font-size: 21px;
+      line-height: 1.7;
+      margin: 22px 0;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin: 28px 0;
+    }
+
+    .feature {
+      background: #fff7f0;
+      border: 1px solid rgba(239,107,46,0.22);
+      padding: 18px;
+      border-radius: 18px;
+      font-size: 18px;
+      font-weight: bold;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+    }
+
+    .box {
+      background: white;
+      border-left: 5px solid #ef6b2e;
+      padding: 22px;
+      border-radius: 18px;
+      font-size: 19px;
+      line-height: 1.6;
+      text-align: left;
+      margin-top: 20px;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: block;
+      padding: 19px 26px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 19px;
+      transition: 0.25s ease;
+    }
+
+    .button.primary {
+      background: #ef6b2e;
+      color: white;
+      box-shadow: 0 12px 28px rgba(239,107,46,0.28);
+    }
+
+    .button.primary:hover {
+      background: #d9551d;
+      transform: translateY(-2px);
+    }
+
+    .button.secondary {
+      background: #0d2c54;
+      color: white;
+    }
+
+    .button.secondary:hover {
+      background: #123b70;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 20px;
+      color: #0d2c54;
+      font-size: 15px;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes readerFloat {
+      0%, 100% {
+        transform: translateY(0) rotate(-4deg);
+      }
+
+      50% {
+        transform: translateY(-14px) rotate(3deg);
+      }
+    }
+
+    @keyframes twinkle {
+      from {
+        opacity: 0.35;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes cloudMove {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(calc(100vw + 320px));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        align-items: flex-start;
+        padding: 24px 16px;
+      }
+
+      .content {
+        padding: 32px 22px;
+      }
+
+      .message {
+        font-size: 19px;
+      }
+
+      .thanks-box div {
+        font-size: 20px;
+      }
+
+      .reader {
+        top: 5%;
+        right: 8%;
+        font-size: 44px;
+        opacity: 0.65;
+      }
+
+      .stars::before,
+      .stars::after {
+        letter-spacing: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="dream-scene">
+    <div class="stars"></div>
+    <div class="reader">📖</div>
+    <div class="cloud cloud-one"></div>
+    <div class="cloud cloud-two"></div>
+  </div>
+
+  <main class="hero">
+
+    <div class="container">
+
+      <div class="poster">
+        <img
+          src="manifesto.JPG"
+          alt="Manifesto evento Giunti in Oriente Book Party a Ischia"
+        />
+      </div>
+
+      <div class="content">
+
+        <div class="eyebrow">
+          Evento concluso
+        </div>
+
+        <h1>
+          Grazie per aver partecipato
+        </h1>
+
+        <div class="subtitle">
+          Giunti in <span class="orange">Oriente</span>
+        </div>
+
+        <div class="thanks-box">
+          <span class="big">📚</span>
+          <div>
+            Il nostro Book Party si è concluso,<br />
+            ma le storie continuano.
+          </div>
+        </div>
+
+        <div class="message">
+          Grazie per aver condiviso con noi una serata speciale tra libri,
+          incontri, musica e sorrisi.
+          La tua presenza ha reso questo evento ancora più bello.
+        </div>
+
+        <div class="features">
+          <div class="feature">📖 Libri condivisi</div>
+          <div class="feature">🍸 Aperitivo e compagnia</div>
+          <div class="feature">🎶 Musica, incontri e sorrisi</div>
+        </div>
+
+        <div class="box">
+          Ci farebbe piacere sapere com’è stata la tua esperienza.
+          Lascia una recensione: bastano pochi secondi e ci aiuterai
+          a rendere il prossimo Book Party ancora più speciale.
+        </div>
+
+        <div class="actions">
+
+          <a
+            class="button primary"
+            href="recensioni.html"
+          >
+            Lascia una recensione
+          </a>
+
+          <a
+            class="button secondary"
+            href="https://wa.me/?text=Ho%20partecipato%20al%20Book%20Party%20Giunti%20in%20Oriente%20a%20Ischia!%20📚%0Ahttps://bookparty.github.io"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Condividi il ricordo su WhatsApp
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer>
+    In collaborazione con Giunti al Punto · Ischia
+  </footer>
+
+</body>
+
+</html>
