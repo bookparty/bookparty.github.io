@@ -756,6 +756,47 @@
 
   </section>
 
+  <!-- FINESTRA FINALE DOPO INVIO RECENSIONE -->
+
+  <section id="submitThanksOverlay">
+
+    <div class="submit-thanks-card">
+
+      <div class="submit-icon">
+        📚✨
+      </div>
+
+      <div class="eyebrow">
+        Recensione inviata
+      </div>
+
+      <h2>
+        Grazie per aver lasciato il tuo ricordo
+      </h2>
+
+      <div class="submit-quote">
+        <strong>Le pagine più belle non finiscono:</strong><br />
+        restano tra chi le ha vissute e tornano a chiamarci
+        quando è il momento di scrivere un nuovo capitolo.
+      </div>
+
+      <div class="submit-small">
+        Arrivederci al prossimo Book Party.<br />
+        Porta con te una nuova storia: noi prepariamo il prossimo incontro.
+      </div>
+
+      <button
+        class="button primary back-button"
+        id="closeSubmitThanksButton"
+        type="button"
+      >
+        Torna al ringraziamento
+      </button>
+
+    </div>
+
+  </section>
+
   <!-- PAGINA DI RINGRAZIAMENTO -->
 
   <main id="thanksPage">
@@ -869,8 +910,8 @@
           </div>
 
           <div class="box">
-            Lascia il tuo nome, valuta l'esperienza vissuta in libri e dedicaci un 
-            piccolo pensiero sulla serata. 
+            Puoi lasciare il tuo nome, scegliere una valutazione in libri e scrivere
+            un piccolo pensiero sulla serata. La musica continuerà mentre compili.
           </div>
 
           <form
@@ -1190,23 +1231,21 @@
         return;
       }
 
-      formSubmitted = true;
-    });
+      /*
+        Il form viene inviato a Google Forms nell'iframe nascosto.
+        La finestra finale viene mostrata subito, senza aspettare la risposta di Google,
+        perché alcuni browser non fanno scattare correttamente l'evento "load" dell'iframe.
+      */
+      reviewsSection.classList.remove("visible");
+      reviewForm.style.display = "none";
+      reviewSuccess.classList.remove("show");
+      submitThanksOverlay.classList.add("show");
+      document.body.classList.add("locked");
 
-    hiddenIframe.addEventListener("load", () => {
-      if (formSubmitted) {
-        reviewForm.style.display = "none";
-        reviewSuccess.classList.remove("show");
-        reviewsSection.classList.remove("visible");
-        submitThanksOverlay.classList.add("show");
-        document.body.classList.add("locked");
-        formSubmitted = false;
-
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth"
-        });
-      }
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     });
 
     closeSubmitThanksButton.addEventListener("click", () => {
