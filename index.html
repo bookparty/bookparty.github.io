@@ -13,10 +13,12 @@
   />
 
   <meta property="og:title" content="Grazie - Giunti in Oriente" />
+
   <meta
     property="og:description"
     content="L'evento Giunti in Oriente si è concluso. Entra nella pagina di ringraziamento e lascia il tuo ricordo."
   />
+
   <meta property="og:image" content="https://bookparty.github.io/manifesto.JPG" />
   <meta property="og:url" content="https://bookparty.github.io" />
   <meta property="og:type" content="website" />
@@ -45,6 +47,8 @@
     body.locked {
       overflow: hidden;
     }
+
+    /* SFONDO ANIMATO */
 
     .dream-scene {
       position: fixed;
@@ -130,6 +134,8 @@
       animation: cloudMove 32s linear infinite;
       animation-delay: 5s;
     }
+
+    /* FINESTRA INIZIALE */
 
     #introOverlay {
       position: fixed;
@@ -261,6 +267,8 @@
       opacity: 0.75;
     }
 
+    /* PAGINA RINGRAZIAMENTO */
+
     #thanksPage {
       opacity: 0;
       transform: translateY(20px);
@@ -272,6 +280,10 @@
     #thanksPage.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    #thanksContent.hidden {
+      display: none;
     }
 
     .hero {
@@ -361,10 +373,27 @@
       transform: translateY(-2px);
     }
 
+    .poster img {
+      width: 100%;
+      display: block;
+      border-radius: 30px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+    }
+
+    /* SCHERMATA RECENSIONE PULITA */
+
     .review-section {
-      padding: 10px 20px 34px;
+      display: none;
+      min-height: 100vh;
+      padding: 34px 20px;
       position: relative;
-      z-index: 2;
+      z-index: 3;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .review-section.visible {
+      display: flex;
     }
 
     .review-card h2 {
@@ -435,6 +464,10 @@
       transform: translateY(-2px);
     }
 
+    .back-button {
+      margin-top: 14px;
+    }
+
     .review-success {
       display: none;
       margin-top: 24px;
@@ -451,11 +484,8 @@
       animation: windowIn 0.6s ease both;
     }
 
-    .poster img {
-      width: 100%;
-      display: block;
-      border-radius: 30px;
-      box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+    iframe[name="hidden_iframe"] {
+      display: none;
     }
 
     footer {
@@ -467,9 +497,7 @@
       z-index: 2;
     }
 
-    iframe[name="hidden_iframe"] {
-      display: none;
-    }
+    /* ANIMAZIONI */
 
     @keyframes windowIn {
       from {
@@ -604,87 +632,95 @@
 
   <main id="thanksPage">
 
-    <section class="hero">
+    <div id="thanksContent">
 
-      <div class="container">
+      <section class="hero">
 
-        <div class="content">
+        <div class="container">
 
-          <div class="eyebrow">
-            Grazie di cuore
-          </div>
+          <div class="content">
 
-          <h2>
-            Grazie per aver partecipato
-          </h2>
-
-          <div class="subtitle">
-            Giunti in <span class="orange">Oriente</span>
-          </div>
-
-          <div class="thanks-box">
-            <span class="big">📚</span>
-            <div>
-              Una serata è finita,<br />
-              ma il ricordo resta aperto.
+            <div class="eyebrow">
+              Grazie di cuore
             </div>
+
+            <h2>
+              Grazie per aver partecipato
+            </h2>
+
+            <div class="subtitle">
+              Giunti in <span class="orange">Oriente</span>
+            </div>
+
+            <div class="thanks-box">
+              <span class="big">📚</span>
+              <div>
+                Una serata è finita,<br />
+                ma il ricordo resta aperto.
+              </div>
+            </div>
+
+            <div class="message">
+              Grazie per aver portato con te un libro, una storia,
+              un sorriso e un po’ del tuo tempo.
+              <br /><br />
+              Il Book Party è nato per condividere pagine,
+              incontri e piccoli momenti belli:
+              la tua presenza lo ha reso davvero speciale.
+            </div>
+
+            <div class="features">
+              <div class="feature">📖 Una storia condivisa</div>
+              <div class="feature">🍸 Un brindisi insieme</div>
+              <div class="feature">🎶 Un ricordo da conservare</div>
+            </div>
+
+            <div class="box">
+              Prima di chiudere questo capitolo, ci piacerebbe sapere com’è stata
+              la tua esperienza. La tua recensione ci aiuterà a far crescere il
+              prossimo Book Party e a renderlo ancora più bello.
+            </div>
+
+            <div class="actions">
+
+              <button
+                class="button primary"
+                id="goReviewButton"
+                type="button"
+              >
+                Lascia la tua recensione
+              </button>
+
+              <button
+                class="button secondary"
+                id="musicButton"
+                type="button"
+              >
+                Metti in pausa la musica
+              </button>
+
+            </div>
+
           </div>
 
-          <div class="message">
-            Grazie per aver portato con te un libro, una storia,
-            un sorriso e un po’ del tuo tempo.
-            <br /><br />
-            Il Book Party è nato per condividere pagine,
-            incontri e piccoli momenti belli:
-            la tua presenza lo ha reso davvero speciale.
-          </div>
-
-          <div class="features">
-            <div class="feature">📖 Una storia condivisa</div>
-            <div class="feature">🍸 Un brindisi insieme</div>
-            <div class="feature">🎶 Un ricordo da conservare</div>
-          </div>
-
-          <div class="box">
-            Prima di chiudere questo capitolo, ci piacerebbe sapere com’è stata
-            la tua esperienza. La tua recensione ci aiuterà a far crescere il
-            prossimo Book Party e a renderlo ancora più bello.
-          </div>
-
-          <div class="actions">
-
-            <button
-              class="button primary"
-              id="goReviewButton"
-              type="button"
-            >
-              Lascia la tua recensione
-            </button>
-
-            <button
-              class="button secondary"
-              id="musicButton"
-              type="button"
-            >
-              Metti in pausa la musica
-            </button>
-
+          <div class="poster">
+            <img
+              src="manifesto.JPG"
+              alt="Manifesto evento Giunti in Oriente Book Party a Ischia"
+            />
           </div>
 
         </div>
 
-        <div class="poster">
-          <img
-            src="manifesto.JPG"
-            alt="Manifesto evento Giunti in Oriente Book Party a Ischia"
-          />
-        </div>
+      </section>
 
-      </div>
+      <footer>
+        In collaborazione con Giunti al Punto · Ischia
+      </footer>
 
-    </section>
+    </div>
 
-    <!-- SEZIONE RECENSIONE NELLA STESSA PAGINA -->
+    <!-- SCHERMATA RECENSIONE PULITA -->
 
     <section class="review-section" id="reviewsSection">
 
@@ -761,6 +797,14 @@
               Invia recensione
             </button>
 
+            <button
+              class="button secondary back-button"
+              id="backThanksButton"
+              type="button"
+            >
+              Torna al ringraziamento
+            </button>
+
           </form>
 
           <div class="review-success" id="reviewSuccess">
@@ -776,10 +820,6 @@
       </div>
 
     </section>
-
-    <footer>
-      In collaborazione con Giunti al Punto · Ischia
-    </footer>
 
   </main>
 
@@ -800,6 +840,10 @@
     const introOverlay = document.getElementById("introOverlay");
     const thanksPage = document.getElementById("thanksPage");
     const goReviewButton = document.getElementById("goReviewButton");
+
+    const thanksContent = document.getElementById("thanksContent");
+    const reviewsSection = document.getElementById("reviewsSection");
+    const backThanksButton = document.getElementById("backThanksButton");
 
     const starButtons = document.querySelectorAll(".star-btn");
     const ratingValue = document.getElementById("ratingValue");
@@ -899,7 +943,21 @@
     });
 
     goReviewButton.addEventListener("click", () => {
-      document.getElementById("reviewsSection").scrollIntoView({
+      thanksContent.classList.add("hidden");
+      reviewsSection.classList.add("visible");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+
+    backThanksButton.addEventListener("click", () => {
+      reviewsSection.classList.remove("visible");
+      thanksContent.classList.remove("hidden");
+
+      window.scrollTo({
+        top: 0,
         behavior: "smooth"
       });
     });
