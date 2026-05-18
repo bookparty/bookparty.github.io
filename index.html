@@ -439,7 +439,7 @@
 
     .stars-rating {
       display: flex;
-      gap: 8px;
+      gap: 10px;
       justify-content: center;
       flex-wrap: wrap;
       margin-top: 12px;
@@ -448,20 +448,33 @@
     .star-btn {
       border: none;
       background: #fff7f0;
-      color: #ef6b2e;
-      border-radius: 16px;
-      padding: 12px 14px;
-      font-size: 26px;
+      border-radius: 18px;
+      padding: 10px;
       cursor: pointer;
       transition: 0.2s ease;
       box-shadow: 0 8px 18px rgba(0,0,0,0.06);
     }
 
+    .star-btn img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      display: block;
+    }
+
     .star-btn.active,
     .star-btn:hover {
       background: #ef6b2e;
-      color: white;
-      transform: translateY(-2px);
+      transform: translateY(-2px) scale(1.05);
+    }
+
+    .rating-text {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 16px;
+      color: #ef6b2e;
+      font-weight: bold;
+      min-height: 22px;
     }
 
     .back-button {
@@ -577,6 +590,11 @@
 
       .hype {
         font-size: 18px;
+      }
+
+      .star-btn img {
+        width: 42px;
+        height: 42px;
       }
     }
   </style>
@@ -741,7 +759,7 @@
           </div>
 
           <div class="box">
-            Puoi lasciare il tuo nome, scegliere una valutazione e scrivere
+            Puoi lasciare il tuo nome, scegliere una valutazione in libri e scrivere
             un piccolo pensiero sulla serata. La musica continuerà mentre compili.
           </div>
 
@@ -767,12 +785,28 @@
               <label>Quanti libri vuoi dare alla serata?</label>
 
               <div class="stars-rating">
-                <button class="star-btn" type="button" data-value="1">📚</button>
-                <button class="star-btn" type="button" data-value="2">📚</button>
-                <button class="star-btn" type="button" data-value="3">📚</button>
-                <button class="star-btn" type="button" data-value="4">📚</button>
-                <button class="star-btn" type="button" data-value="5">📚</button>
+                <button class="star-btn" type="button" data-value="1" aria-label="1 libro">
+                  <img src="libro-rating.png" alt="1 libro">
+                </button>
+
+                <button class="star-btn" type="button" data-value="2" aria-label="2 libri">
+                  <img src="libro-rating.png" alt="2 libri">
+                </button>
+
+                <button class="star-btn" type="button" data-value="3" aria-label="3 libri">
+                  <img src="libro-rating.png" alt="3 libri">
+                </button>
+
+                <button class="star-btn" type="button" data-value="4" aria-label="4 libri">
+                  <img src="libro-rating.png" alt="4 libri">
+                </button>
+
+                <button class="star-btn" type="button" data-value="5" aria-label="5 libri">
+                  <img src="libro-rating.png" alt="5 libri">
+                </button>
               </div>
+
+              <div class="rating-text" id="ratingText"></div>
 
               <input
                 id="ratingValue"
@@ -847,6 +881,7 @@
 
     const starButtons = document.querySelectorAll(".star-btn");
     const ratingValue = document.getElementById("ratingValue");
+    const ratingText = document.getElementById("ratingText");
     const reviewForm = document.getElementById("reviewForm");
     const reviewSuccess = document.getElementById("reviewSuccess");
 
@@ -974,13 +1009,19 @@
             star.classList.remove("active");
           }
         });
+
+        if (value === "1") {
+          ratingText.innerText = "Hai scelto 1 libro";
+        } else {
+          ratingText.innerText = "Hai scelto " + value + " libri";
+        }
       });
     });
 
     reviewForm.addEventListener("submit", (event) => {
       if (!ratingValue.value) {
         event.preventDefault();
-        alert("Seleziona una valutazione in stelle prima di inviare.");
+        alert("Seleziona una valutazione in libri prima di inviare.");
         return;
       }
 
