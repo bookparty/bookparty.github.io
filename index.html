@@ -157,6 +157,67 @@
       pointer-events: none;
     }
 
+    /* FINESTRA FINALE DOPO INVIO RECENSIONE */
+
+    #submitThanksOverlay {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background:
+        radial-gradient(circle at top, rgba(239,107,46,0.34), transparent 35%),
+        linear-gradient(180deg, #fff1e6 0%, #f7d4c1 100%);
+    }
+
+    #submitThanksOverlay.show {
+      display: flex;
+      animation: overlayFade 0.7s ease both;
+    }
+
+    .submit-thanks-card {
+      width: 100%;
+      max-width: 660px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      border-radius: 38px;
+      padding: 46px 32px;
+      text-align: center;
+      box-shadow: 0 28px 70px rgba(0,0,0,0.22);
+      animation: windowIn 0.8s ease both;
+    }
+
+    .submit-icon {
+      font-size: clamp(62px, 13vw, 104px);
+      line-height: 1;
+      margin-bottom: 18px;
+      filter: drop-shadow(0 12px 20px rgba(0,0,0,0.16));
+    }
+
+    .submit-quote {
+      background: #0d2c54;
+      color: white;
+      padding: 28px 24px;
+      border-radius: 28px;
+      margin: 28px 0;
+      font-size: clamp(21px, 4vw, 31px);
+      line-height: 1.45;
+      box-shadow: 0 14px 32px rgba(13,44,84,0.22);
+    }
+
+    .submit-quote strong {
+      color: #ffcf9f;
+    }
+
+    .submit-small {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-top: 18px;
+      color: #0d2c54;
+    }
+
     .intro-card {
       width: 100%;
       max-width: 620px;
@@ -497,6 +558,45 @@
       animation: windowIn 0.6s ease both;
     }
 
+    .final-thanks {
+      display: none;
+      text-align: center;
+      animation: windowIn 0.8s ease both;
+    }
+
+    .final-thanks.show {
+      display: block;
+    }
+
+    .final-icon {
+      font-size: clamp(58px, 12vw, 96px);
+      line-height: 1;
+      margin-bottom: 18px;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,0.16));
+    }
+
+    .final-quote {
+      background: #0d2c54;
+      color: white;
+      padding: 26px 22px;
+      border-radius: 26px;
+      margin: 26px 0;
+      font-size: clamp(21px, 4vw, 30px);
+      line-height: 1.45;
+      box-shadow: 0 14px 30px rgba(13,44,84,0.20);
+    }
+
+    .final-quote strong {
+      color: #ffcf9f;
+    }
+
+    .final-small {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-top: 18px;
+      color: #0d2c54;
+    }
+
     iframe[name="hidden_iframe"] {
       display: none;
     }
@@ -511,6 +611,16 @@
     }
 
     /* ANIMAZIONI */
+
+    @keyframes overlayFade {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
 
     @keyframes windowIn {
       from {
@@ -759,8 +869,8 @@
           </div>
 
           <div class="box">
-            Puoi lasciare il tuo nome, scegliere una valutazione in libri e scrivere
-            un piccolo pensiero sulla serata. La musica continuerà mentre compili.
+            Lascia il tuo nome, valuta l'esperienza vissuta in libri e dedicaci un 
+            piccolo pensiero sulla serata. 
           </div>
 
           <form
@@ -847,7 +957,42 @@
             Ogni parola sarà parte del ricordo di questa serata.
           </div>
 
-          <iframe name="hidden_iframe"></iframe>
+          <div class="final-thanks" id="finalThanks">
+
+            <div class="final-icon">
+              📚✨
+            </div>
+
+            <div class="eyebrow">
+              Recensione ricevuta
+            </div>
+
+            <h2>
+              Grazie per aver lasciato il tuo ricordo
+            </h2>
+
+            <div class="final-quote">
+              <strong>Le pagine più belle non finiscono:</strong><br />
+              restano tra chi le ha vissute e tornano a chiamarci
+              quando è il momento di scrivere un nuovo capitolo.
+            </div>
+
+            <div class="final-small">
+              Arrivederci al prossimo Book Party.<br />
+              Porta con te una nuova storia: noi prepariamo il prossimo incontro.
+            </div>
+
+            <button
+              class="button secondary back-button"
+              id="finalBackButton"
+              type="button"
+            >
+              Torna al ringraziamento
+            </button>
+
+          </div>
+
+          <iframe name="hidden_iframe" id="hidden_iframe"></iframe>
 
         </div>
 
@@ -884,6 +1029,11 @@
     const ratingText = document.getElementById("ratingText");
     const reviewForm = document.getElementById("reviewForm");
     const reviewSuccess = document.getElementById("reviewSuccess");
+    const submitThanksOverlay = document.getElementById("submitThanksOverlay");
+    const closeSubmitThanksButton = document.getElementById("closeSubmitThanksButton");
+    const finalThanks = document.getElementById("finalThanks");
+    const finalBackButton = document.getElementById("finalBackButton");
+    const hiddenIframe = document.getElementById("hidden_iframe");
 
     let currentTrack = 0;
     let isPlaying = false;
@@ -1041,13 +1191,33 @@
       }
 
       formSubmitted = true;
+    });
 
-      setTimeout(() => {
-        if (formSubmitted) {
-          reviewForm.style.display = "none";
-          reviewSuccess.classList.add("show");
-        }
-      }, 900);
+    hiddenIframe.addEventListener("load", () => {
+      if (formSubmitted) {
+        reviewForm.style.display = "none";
+        reviewSuccess.classList.remove("show");
+        reviewsSection.classList.remove("visible");
+        submitThanksOverlay.classList.add("show");
+        document.body.classList.add("locked");
+        formSubmitted = false;
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      }
+    });
+
+    closeSubmitThanksButton.addEventListener("click", () => {
+      submitThanksOverlay.classList.remove("show");
+      document.body.classList.remove("locked");
+      thanksContent.classList.remove("hidden");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     });
   </script>
 
