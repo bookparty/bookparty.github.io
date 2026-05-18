@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Grazie - Giunti in Oriente</title>
+
+  <meta
+    name="description"
+    content="Grazie per aver partecipato a Giunti in Oriente - Book Party a Ischia. Lascia una recensione e raccontaci la tua esperienza."
+  />
+
+  <meta property="og:title" content="Grazie - Giunti in Oriente" />
+
+  <meta
+    property="og:description"
+    content="L'evento Giunti in Oriente si è concluso. Entra nella pagina di ringraziamento e lascia il tuo ricordo."
+  />
+
+  <meta property="og:image" content="https://bookparty.github.io/manifesto.JPG" />
+  <meta property="og:url" content="https://bookparty.github.io" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="it_IT" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at top, rgba(239,107,46,0.22), transparent 30%),
+        linear-gradient(180deg, #fff1e6 0%, #f7d4c1 100%);
+      color: #0d2c54;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body.locked {
+      overflow: hidden;
+    }
+
+    /* SFONDO ANIMATO */
+
+    .dream-scene {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .stars::before,
+    .stars::after {
+      content: "✦ ✧ ✦ ✧ ✦ ✧ ✦";
+      position: absolute;
+      color: rgba(255,255,255,0.95);
+      font-size: 22px;
+      letter-spacing: 22px;
+      animation: twinkle 2.8s ease-in-out infinite alternate;
+    }
+
+    .stars::before {
+      top: 12%;
+      left: 8%;
+    }
+
+    .stars::after {
+      top: 32%;
+      right: 7%;
+      font-size: 16px;
+      animation-delay: 1s;
+    }
+
+    .reader {
+      position: absolute;
+      top: 10%;
+      right: 12%;
+      font-size: 58px;
+      z-index: 1;
+      animation: readerFloat 4s ease-in-out infinite;
+      filter: drop-shadow(0 12px 18px rgba(0,0,0,0.20));
+    }
+
+    .cloud {
+      position: absolute;
+      width: 180px;
+      height: 54px;
+      background: rgba(255,255,255,0.42);
+      border-radius: 999px;
+      filter: blur(1px);
+    }
+
+    .cloud::before,
+    .cloud::after {
+      content: "";
+      position: absolute;
+      background: rgba(255,255,255,0.42);
+      border-radius: 50%;
+    }
+
+    .cloud::before {
+      width: 76px;
+      height: 76px;
+      left: 24px;
+      top: -36px;
+    }
+
+    .cloud::after {
+      width: 96px;
+      height: 96px;
+      right: 22px;
+      top: -50px;
+    }
+
+    .cloud-one {
+      bottom: 16%;
+      left: -220px;
+      animation: cloudMove 24s linear infinite;
+    }
+
+    .cloud-two {
+      top: 22%;
+      left: -260px;
+      transform: scale(0.75);
+      animation: cloudMove 32s linear infinite;
+      animation-delay: 5s;
+    }
+
+    /* FINESTRA INIZIALE */
+
+    #introOverlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background:
+        radial-gradient(circle at top, rgba(239,107,46,0.30), transparent 35%),
+        linear-gradient(180deg, #fff1e6 0%, #f7d4c1 100%);
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    #introOverlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .intro-card {
+      width: 100%;
+      max-width: 620px;
+      background: rgba(255,255,255,0.90);
+      backdrop-filter: blur(14px);
+      border-radius: 36px;
+      padding: 44px 32px;
+      text-align: center;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+      position: relative;
+      z-index: 2;
+      animation: windowIn 1s ease both;
+    }
+
+    .intro-label,
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(239,107,46,0.13);
+      color: #ef6b2e;
+      font-size: 14px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      margin-bottom: 18px;
+    }
+
+    h1,
+    h2 {
+      font-size: clamp(42px, 8vw, 76px);
+      line-height: 0.95;
+      margin: 0 0 20px;
+      color: #0d2c54;
+    }
+
+    .orange {
+      color: #ef6b2e;
+    }
+
+    .intro-phrase,
+    .message {
+      font-size: clamp(20px, 4vw, 27px);
+      line-height: 1.5;
+      margin: 20px 0;
+      color: #0d2c54;
+    }
+
+    .hype,
+    .thanks-box {
+      margin: 24px auto 0;
+      background: #0d2c54;
+      color: white;
+      padding: 24px;
+      border-radius: 24px;
+      font-size: 20px;
+      line-height: 1.5;
+      box-shadow: 0 14px 30px rgba(13,44,84,0.20);
+    }
+
+    .hype strong,
+    .thanks-box .big {
+      color: #ffcf9f;
+    }
+
+    .thanks-box .big {
+      display: block;
+      font-size: clamp(44px, 8vw, 72px);
+      line-height: 1;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+
+    #enterButton,
+    .button {
+      display: block;
+      width: 100%;
+      padding: 19px 26px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 19px;
+      transition: 0.25s ease;
+      border: none;
+      cursor: pointer;
+      font-family: Georgia, "Times New Roman", serif;
+      text-align: center;
+    }
+
+    #enterButton {
+      display: inline-block;
+      width: auto;
+      margin-top: 30px;
+      background: #ef6b2e;
+      color: white;
+      box-shadow: 0 14px 30px rgba(239,107,46,0.30);
+    }
+
+    #enterButton:hover,
+    .button.primary:hover {
+      background: #d9551d;
+      transform: translateY(-2px);
+    }
+
+    .small-text {
+      margin-top: 18px;
+      font-size: 15px;
+      opacity: 0.75;
+    }
+
+    /* PAGINA RINGRAZIAMENTO */
+
+    #thanksPage {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    #thanksPage.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #thanksContent.hidden {
+      display: none;
+    }
+
+    .hero {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 34px 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 760px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .content,
+    .review-card {
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(12px);
+      padding: 44px 30px;
+      border-radius: 36px;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.14);
+      text-align: center;
+    }
+
+    .subtitle {
+      font-size: clamp(24px, 4vw, 34px);
+      margin: 20px 0 24px;
+      color: #ef6b2e;
+      font-weight: bold;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin: 28px 0;
+    }
+
+    .feature {
+      background: #fff7f0;
+      border: 1px solid rgba(239,107,46,0.22);
+      padding: 18px;
+      border-radius: 18px;
+      font-size: 18px;
+      font-weight: bold;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+    }
+
+    .box {
+      background: white;
+      border-left: 5px solid #ef6b2e;
+      padding: 22px;
+      border-radius: 18px;
+      font-size: 19px;
+      line-height: 1.6;
+      text-align: left;
+      margin-top: 20px;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .button.primary {
+      background: #ef6b2e;
+      color: white;
+      box-shadow: 0 12px 28px rgba(239,107,46,0.28);
+    }
+
+    .button.secondary {
+      background: #0d2c54;
+      color: white;
+    }
+
+    .button.secondary:hover {
+      background: #123b70;
+      transform: translateY(-2px);
+    }
+
+    .poster img {
+      width: 100%;
+      display: block;
+      border-radius: 30px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+    }
+
+    /* SCHERMATA RECENSIONE PULITA */
+
+    .review-section {
+      display: none;
+      min-height: 100vh;
+      padding: 34px 20px;
+      position: relative;
+      z-index: 3;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .review-section.visible {
+      display: flex;
+    }
+
+    .review-card h2 {
+      font-size: clamp(38px, 7vw, 64px);
+    }
+
+    .form-group {
+      text-align: left;
+      margin: 20px 0;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #0d2c54;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid rgba(13,44,84,0.18);
+      border-radius: 18px;
+      padding: 16px;
+      font-size: 17px;
+      font-family: Georgia, "Times New Roman", serif;
+      color: #0d2c54;
+      background: #fffdfb;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #ef6b2e;
+      box-shadow: 0 0 0 4px rgba(239,107,46,0.13);
+    }
+
+    .stars-rating {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .star-btn {
+      border: none;
+      background: #fff7f0;
+      border-radius: 18px;
+      padding: 10px;
+      cursor: pointer;
+      transition: 0.2s ease;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+    }
+
+    .star-btn img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .star-btn.active,
+    .star-btn:hover {
+      background: #ef6b2e;
+      transform: translateY(-2px) scale(1.05);
+    }
+
+    .rating-text {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 16px;
+      color: #ef6b2e;
+      font-weight: bold;
+      min-height: 22px;
+    }
+
+    .back-button {
+      margin-top: 14px;
+    }
+
+    .review-success {
+      display: none;
+      margin-top: 24px;
+      background: #0d2c54;
+      color: white;
+      padding: 22px;
+      border-radius: 22px;
+      font-size: 19px;
+      line-height: 1.5;
+    }
+
+    .review-success.show {
+      display: block;
+      animation: windowIn 0.6s ease both;
+    }
+
+    iframe[name="hidden_iframe"] {
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 20px;
+      color: #0d2c54;
+      font-size: 15px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ANIMAZIONI */
+
+    @keyframes windowIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes readerFloat {
+      0%, 100% {
+        transform: translateY(0) rotate(-4deg);
+      }
+
+      50% {
+        transform: translateY(-14px) rotate(3deg);
+      }
+    }
+
+    @keyframes twinkle {
+      from {
+        opacity: 0.35;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes cloudMove {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(calc(100vw + 320px));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .intro-card,
+      .content,
+      .review-card {
+        padding: 34px 22px;
+      }
+
+      .hero {
+        align-items: flex-start;
+        padding: 24px 16px;
+      }
+
+      .message {
+        font-size: 19px;
+      }
+
+      .reader {
+        top: 5%;
+        right: 8%;
+        font-size: 44px;
+        opacity: 0.65;
+      }
+
+      .stars::before,
+      .stars::after {
+        letter-spacing: 14px;
+      }
+
+      #enterButton {
+        width: 100%;
+        font-size: 18px;
+        padding: 18px 22px;
+      }
+
+      .hype {
+        font-size: 18px;
+      }
+
+      .star-btn img {
+        width: 42px;
+        height: 42px;
+      }
+    }
+  </style>
+</head>
+
+<body class="locked">
+
+  <div class="dream-scene">
+    <div class="stars"></div>
+    <div class="reader">📖</div>
+    <div class="cloud cloud-one"></div>
+    <div class="cloud cloud-two"></div>
+  </div>
+
+  <!-- FINESTRA INIZIALE -->
+
+  <section id="introOverlay">
+
+    <div class="intro-card">
+
+      <div class="intro-label">
+        Evento concluso
+      </div>
+
+      <h1>
+        Le storie non finiscono <span class="orange">qui</span>
+      </h1>
+
+      <div class="intro-phrase">
+        Ogni libro portato, ogni sorriso condiviso e ogni incontro nato
+        resteranno tra le pagine più belle di questa serata.
+      </div>
+
+      <div class="hype">
+        <strong>Grazie per esserci stato.</strong><br />
+        Il primo Book Party è solo l’inizio:
+        il prossimo capitolo è già nell’aria.
+      </div>
+
+      <button id="enterButton" type="button">
+        Entra nel ricordo della serata
+      </button>
+
+      <div class="small-text">
+        La musica partirà e ti accompagnerà nella pagina di ringraziamento.
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PAGINA DI RINGRAZIAMENTO -->
+
+  <main id="thanksPage">
+
+    <div id="thanksContent">
+
+      <section class="hero">
+
+        <div class="container">
+
+          <div class="content">
+
+            <div class="eyebrow">
+              Grazie di cuore
+            </div>
+
+            <h2>
+              Grazie per aver partecipato
+            </h2>
+
+            <div class="subtitle">
+              Giunti in <span class="orange">Oriente</span>
+            </div>
+
+            <div class="thanks-box">
+              <span class="big">📚</span>
+              <div>
+                Una serata è finita,<br />
+                ma il ricordo resta aperto.
+              </div>
+            </div>
+
+            <div class="message">
+              Grazie per aver portato con te un libro, una storia,
+              un sorriso e un po’ del tuo tempo.
+              <br /><br />
+              Il Book Party è nato per condividere pagine,
+              incontri e piccoli momenti belli:
+              la tua presenza lo ha reso davvero speciale.
+            </div>
+
+            <div class="features">
+              <div class="feature">📖 Una storia condivisa</div>
+              <div class="feature">🍸 Un brindisi insieme</div>
+              <div class="feature">🎶 Un ricordo da conservare</div>
+            </div>
+
+            <div class="box">
+              Prima di chiudere questo capitolo, ci piacerebbe sapere com’è stata
+              la tua esperienza. La tua recensione ci aiuterà a far crescere il
+              prossimo Book Party e a renderlo ancora più bello.
+            </div>
+
+            <div class="actions">
+
+              <button
+                class="button primary"
+                id="goReviewButton"
+                type="button"
+              >
+                Lascia la tua recensione
+              </button>
+
+              <button
+                class="button secondary"
+                id="musicButton"
+                type="button"
+              >
+                Metti in pausa la musica
+              </button>
+
+            </div>
+
+          </div>
+
+          <div class="poster">
+            <img
+              src="manifesto.JPG"
+              alt="Manifesto evento Giunti in Oriente Book Party a Ischia"
+            />
+          </div>
+
+        </div>
+
+      </section>
+
+      <footer>
+        In collaborazione con Giunti al Punto · Ischia
+      </footer>
+
+    </div>
+
+    <!-- SCHERMATA RECENSIONE PULITA -->
+
+    <section class="review-section" id="reviewsSection">
+
+      <div class="container">
+
+        <div class="review-card">
+
+          <div class="eyebrow">
+            La tua recensione
+          </div>
+
+          <h2>
+            Raccontaci la tua esperienza
+          </h2>
+
+          <div class="subtitle">
+            Il tuo ricordo ci aiuta a scrivere il prossimo capitolo
+          </div>
+
+          <div class="box">
+            Puoi lasciare il tuo nome, scegliere una valutazione in libri e scrivere
+            un piccolo pensiero sulla serata. La musica continuerà mentre compili.
+          </div>
+
+          <form
+            id="reviewForm"
+            action="https://docs.google.com/forms/d/e/1FAIpQLSffiRXOw3lmYzL3mnJrCTk9WQ_CI3Ipu_743mA6WtNYLIgxzA/formResponse"
+            method="POST"
+            target="hidden_iframe"
+          >
+
+            <div class="form-group">
+              <label for="nome">Il tuo nome</label>
+              <input
+                id="nome"
+                name="entry.149638264"
+                type="text"
+                placeholder="Scrivi il tuo nome"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Quanti libri vuoi dare alla serata?</label>
+
+              <div class="stars-rating">
+                <button class="star-btn" type="button" data-value="1" aria-label="1 libro">
+                  <img src="libro-rating.png" alt="1 libro">
+                </button>
+
+                <button class="star-btn" type="button" data-value="2" aria-label="2 libri">
+                  <img src="libro-rating.png" alt="2 libri">
+                </button>
+
+                <button class="star-btn" type="button" data-value="3" aria-label="3 libri">
+                  <img src="libro-rating.png" alt="3 libri">
+                </button>
+
+                <button class="star-btn" type="button" data-value="4" aria-label="4 libri">
+                  <img src="libro-rating.png" alt="4 libri">
+                </button>
+
+                <button class="star-btn" type="button" data-value="5" aria-label="5 libri">
+                  <img src="libro-rating.png" alt="5 libri">
+                </button>
+              </div>
+
+              <div class="rating-text" id="ratingText"></div>
+
+              <input
+                id="ratingValue"
+                name="entry.1582773664"
+                type="hidden"
+                value=""
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="commento">Lascia un commento</label>
+              <textarea
+                id="commento"
+                name="entry.2078117879"
+                placeholder="Scrivi qui il tuo pensiero sulla serata..."
+                required
+              ></textarea>
+            </div>
+
+            <button class="button primary" type="submit">
+              Invia recensione
+            </button>
+
+            <button
+              class="button secondary back-button"
+              id="backThanksButton"
+              type="button"
+            >
+              Torna al ringraziamento
+            </button>
+
+          </form>
+
+          <div class="review-success" id="reviewSuccess">
+            Grazie! La tua recensione è stata inviata.
+            <br />
+            Ogni parola sarà parte del ricordo di questa serata.
+          </div>
+
+          <iframe name="hidden_iframe"></iframe>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- MUSICA -->
+
+  <audio id="bgMusic" preload="auto"></audio>
+
+  <script>
+    const tracks = [
+      "musica1.mp3",
+      "musica2.mp3",
+      "musica3.mp3"
+    ];
+
+    const music = document.getElementById("bgMusic");
+    const enterButton = document.getElementById("enterButton");
+    const musicButton = document.getElementById("musicButton");
+    const introOverlay = document.getElementById("introOverlay");
+    const thanksPage = document.getElementById("thanksPage");
+    const goReviewButton = document.getElementById("goReviewButton");
+
+    const thanksContent = document.getElementById("thanksContent");
+    const reviewsSection = document.getElementById("reviewsSection");
+    const backThanksButton = document.getElementById("backThanksButton");
+
+    const starButtons = document.querySelectorAll(".star-btn");
+    const ratingValue = document.getElementById("ratingValue");
+    const ratingText = document.getElementById("ratingText");
+    const reviewForm = document.getElementById("reviewForm");
+    const reviewSuccess = document.getElementById("reviewSuccess");
+
+    let currentTrack = 0;
+    let isPlaying = false;
+    let formSubmitted = false;
+
+    music.volume = 0.18;
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function fadeIn(audio) {
+      audio.volume = 0;
+
+      let vol = 0;
+
+      const interval = setInterval(() => {
+        if (vol < 0.18) {
+          vol += 0.01;
+          audio.volume = vol;
+        } else {
+          clearInterval(interval);
+        }
+      }, 130);
+    }
+
+    function playTrack(index) {
+      music.src = tracks[index];
+
+      music.play()
+        .then(() => {
+          isPlaying = true;
+          musicButton.innerText = "Metti in pausa la musica";
+          fadeIn(music);
+        })
+        .catch(() => {
+          isPlaying = false;
+          musicButton.innerText = "Avvia la musica";
+        });
+    }
+
+    shuffle(tracks);
+
+    music.addEventListener("ended", () => {
+      currentTrack++;
+
+      if (currentTrack >= tracks.length) {
+        currentTrack = 0;
+        shuffle(tracks);
+      }
+
+      playTrack(currentTrack);
+    });
+
+    enterButton.addEventListener("click", () => {
+      enterButton.disabled = true;
+      enterButton.innerText = "La magia sta iniziando...";
+
+      playTrack(currentTrack);
+
+      setTimeout(() => {
+        introOverlay.classList.add("hidden");
+        document.body.classList.remove("locked");
+        thanksPage.classList.add("visible");
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      }, 900);
+    });
+
+    musicButton.addEventListener("click", () => {
+      if (!isPlaying) {
+        if (!music.src) {
+          playTrack(currentTrack);
+        } else {
+          music.play()
+            .then(() => {
+              isPlaying = true;
+              musicButton.innerText = "Metti in pausa la musica";
+            });
+        }
+      } else {
+        music.pause();
+        isPlaying = false;
+        musicButton.innerText = "Avvia la musica";
+      }
+    });
+
+    goReviewButton.addEventListener("click", () => {
+      thanksContent.classList.add("hidden");
+      reviewsSection.classList.add("visible");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+
+    backThanksButton.addEventListener("click", () => {
+      reviewsSection.classList.remove("visible");
+      thanksContent.classList.remove("hidden");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+
+    starButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const value = button.dataset.value;
+
+        let googleFormValue = "";
+
+        if (value === "1") {
+          googleFormValue = "★";
+        } else if (value === "2") {
+          googleFormValue = "★★";
+        } else if (value === "3") {
+          googleFormValue = "★★★";
+        } else if (value === "4") {
+          googleFormValue = "★★★★";
+        } else if (value === "5") {
+          googleFormValue = "★★★★★";
+        }
+
+        ratingValue.value = googleFormValue;
+
+        starButtons.forEach((star) => {
+          if (Number(star.dataset.value) <= Number(value)) {
+            star.classList.add("active");
+          } else {
+            star.classList.remove("active");
+          }
+        });
+
+        if (value === "1") {
+          ratingText.innerText = "Hai scelto 1 libro";
+        } else {
+          ratingText.innerText = "Hai scelto " + value + " libri";
+        }
+      });
+    });
+
+    reviewForm.addEventListener("submit", (event) => {
+      if (!ratingValue.value) {
+        event.preventDefault();
+        alert("Seleziona una valutazione prima di inviare.");
+        return;
+      }
+
+      formSubmitted = true;
+
+      setTimeout(() => {
+        if (formSubmitted) {
+          reviewForm.style.display = "none";
+          reviewSuccess.classList.add("show");
+        }
+      }, 900);
+    });
+  </script>
+
+</body>
+
+</html>
